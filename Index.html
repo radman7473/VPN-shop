@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#050505">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>JARVIS RADMAN V34</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#050505;color:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial,sans-serif;overflow:hidden}button,input{font:inherit}button{color:inherit;border:0;cursor:pointer}.app{height:100dvh;display:flex;flex-direction:column;position:relative;background:radial-gradient(circle at 50% 38%,#171717 0,#090909 26%,#050505 58%)}header{min-height:68px;height:auto;padding:calc(env(safe-area-inset-top) + 10px) 18px 10px;display:flex;align-items:center;justify-content:space-between;flex:0 0 auto}.menu-btn{width:44px;height:44px;display:grid;place-items:center;flex:0 0 44px}.brand{font-size:14px;letter-spacing:2px;font-weight:700}.iconbtn{width:42px;height:42px;border:1px solid #292929;background:#0e0e0e;border-radius:14px;display:grid;place-items:center}.iconbtn svg{width:20px;height:20px;fill:none;stroke:#eee;stroke-width:1.7}.main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;padding:20px}.status{text-align:center;margin-bottom:22px}.status .state{font-size:12px;letter-spacing:2.4px;color:#8d8d8d}.status .title{font-size:23px;margin-top:8px;font-weight:650}.visualizer{height:118px;width:min(390px,88vw);display:flex;align-items:center;justify-content:center;gap:5px}.bar{width:4px;height:12px;border-radius:10px;background:#f2f2f2;opacity:.28;transform-origin:center;transition:height .08s ease,opacity .15s}.visualizer.active .bar{opacity:.9;animation:pulse 1.1s ease-in-out infinite alternate}.bar:nth-child(2n){animation-delay:-.3s}.bar:nth-child(3n){animation-delay:-.55s}@keyframes pulse{from{height:10px}to{height:var(--h,50px)}}.orb{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,#fff 0,#bdbdbd 2%,#333 9%,transparent 58%);opacity:.055;filter:blur(1px);pointer-events:none}.composer{position:relative;z-index:6;width:min(720px,94vw);padding:10px;display:flex;align-items:center;gap:9px;border:1px solid #242424;background:rgba(12,12,12,.94);border-radius:22px;margin-bottom:max(14px,env(safe-area-inset-bottom));box-shadow:0 15px 50px rgba(0,0,0,.35)}.composer input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;font-size:16px;padding:12px}.composer input::placeholder{color:#666}.send,.mic{width:46px;height:46px;border-radius:16px;background:#eee;color:#050505;display:grid;place-items:center}.mic{background:#171717;color:#fff;border:1px solid #292929}.send svg,.mic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}.panel{position:absolute;inset:auto 0 0;background:#0b0b0b;border:1px solid #272727;border-bottom:0;border-radius:26px 26px 0 0;padding:22px 18px max(24px,env(safe-area-inset-bottom));transform:translateY(110%);transition:.28s ease;z-index:10;max-height:82dvh;overflow:auto}.panel.open{transform:translateY(0)}.panel h2{margin:0 0 16px;font-size:19px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #1d1d1d}.row:last-child{border-bottom:0}.row label{font-size:14px;color:#ddd}.row small{display:block;color:#777;margin-top:4px}.field{background:#121212;border:1px solid #282828;border-radius:12px;color:#fff;padding:10px 12px;width:180px;outline:0}.close{position:absolute;left:16px;top:16px;width:34px;height:34px;border-radius:10px;background:#181818;color:#bbb}.chat{position:absolute;inset:68px 0 92px;padding:18px 14px 18px;overflow-y:auto;overflow-x:hidden;display:none;z-index:4;scroll-behavior:smooth;background:rgba(5,5,5,.94)}.chat.show{display:block;background:rgba(8,8,8,.72);backdrop-filter:blur(2px)}.chat-inner{width:min(760px,100%);min-height:100%;margin:0 auto;padding:4px 2px 24px;display:flex;flex-direction:column;justify-content:flex-end}.chat::-webkit-scrollbar{width:5px}.chat::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:10px}.typing-cursor{display:inline-block;width:7px;height:1.05em;background:#aaa;vertical-align:-2px;margin-right:3px;border-radius:2px;animation:blink .8s infinite}@keyframes blink{50%{opacity:0}}.bubble{max-width:min(680px,88%);padding:13px 15px;border-radius:18px;margin:7px 0;line-height:1.65;font-size:14px;white-space:pre-wrap;box-shadow:0 4px 20px rgba(0,0,0,.16);animation:bubbleIn .22s ease-out both}.bubble.user{align-self:flex-start}.bubble.assistant{align-self:flex-end}@keyframes bubbleIn{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:none}}.user{margin-right:auto;background:#eee;color:#111;border-bottom-left-radius:5px}.assistant{margin-left:auto;background:#141414;border:1px solid #282828;border-bottom-right-radius:5px}.quick{transition:opacity .25s,transform .25s;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}.chip{padding:9px 12px;border-radius:12px;border:1px solid #292929;background:#111;color:#ccc;font-size:12px}.toast{position:absolute;left:50%;bottom:105px;transform:translate(-50%,20px);background:#eee;color:#111;border-radius:13px;padding:10px 14px;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:20;white-space:nowrap}.memory-confirm{align-self:flex-end;width:min(360px,88%);margin:10px 0 12px;padding:12px 14px;border:1px solid #303030;border-radius:16px;background:linear-gradient(180deg,#151515,#0d0d0d);animation:memoryIn .38s cubic-bezier(.2,.8,.2,1) both}.memory-confirm .memory-top{display:flex;align-items:center;gap:9px}.memory-confirm .memory-mark{width:25px;height:25px;border:1px solid #666;border-radius:50%;display:grid;place-items:center;animation:memoryRing .7s ease-out}.memory-confirm .memory-mark:after{content:"";width:7px;height:4px;border-left:2px solid #eee;border-bottom:2px solid #eee;transform:rotate(-45deg) translate(1px,-1px);opacity:0;animation:memoryCheck .35s .3s ease-out forwards}.memory-confirm strong{font-size:12px;letter-spacing:1.6px}.memory-confirm small{display:block;color:#777;margin-top:5px;font-size:11px}@keyframes memoryIn{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}@keyframes memoryRing{0%{transform:scale(.5);opacity:.2}70%{transform:scale(1.12)}100%{transform:scale(1)}}@keyframes memoryCheck{to{opacity:1}}.toast.show{opacity:1;transform:translate(-50%,0)}.timerbox{margin-top:12px;padding:14px;border:1px solid #292929;border-radius:15px;background:#101010}.timerbox strong{font-size:28px;letter-spacing:1px}.timer-actions{display:flex;gap:8px;margin-top:10px}.danger{background:#202020;border:1px solid #333;padding:9px 12px;border-radius:11px}.memory-list{font-size:13px;color:#aaa;line-height:1.8}.empty{color:#666}.command-sheet{position:fixed;inset:0;background:rgba(0,0,0,.52);backdrop-filter:blur(7px);display:none;align-items:flex-start;justify-content:center;padding:82px 16px 20px;z-index:120}.command-sheet.open{display:flex}.command-card{width:min(420px,100%);background:#0d0d0d;border:1px solid #292929;border-radius:22px;padding:14px;box-shadow:0 24px 70px rgba(0,0,0,.55)}.command-head{display:flex;align-items:center;justify-content:space-between;padding:4px 4px 12px;border-bottom:1px solid #222}.command-head strong{font-size:15px}.command-action{width:100%;text-align:right;background:#111;border:1px solid #222;border-radius:15px;padding:12px 13px;margin-top:8px}.command-action span{display:block;font-size:14px;color:#eee}.command-action small{display:block;color:#777;margin-top:4px;font-size:11px}.command-action:hover{background:#181818;border-color:#333}.chat.show{background:rgba(8,8,8,.54);backdrop-filter:blur(6px)}.quick.quick-hidden{opacity:0;pointer-events:none;transform:translateY(-8px);max-height:0;overflow:hidden;margin:0}.confirm-modal{position:fixed;inset:0;background:rgba(0,0,0,.42);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:20px;z-index:300}.confirm-modal.open{display:flex}.confirm-card{width:min(360px,100%);background:#111;border:1px solid #303030;border-radius:22px;padding:20px;box-shadow:0 25px 80px rgba(0,0,0,.4);text-align:right}.confirm-card h3{margin:0 0 8px;font-size:17px}.confirm-card p{margin:0;color:#888;font-size:13px;line-height:1.8}.confirm-actions{display:flex;gap:8px;margin-top:18px}.confirm-actions button{flex:1;padding:12px;border-radius:13px;border:1px solid #292929;background:#191919;color:#eee}.confirm-actions .yes{background:#eee;color:#111}.voice-select{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.voice-preset{flex:1;min-width:100px;background:#111;border:1px solid #292929;color:#ddd;border-radius:12px;padding:9px;font-size:11px}.voice-preset.active{border-color:#777;background:#1b1b1b}.app-shortcuts{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.app-shortcuts button{background:#111;border:1px solid #292929;color:#ccc;border-radius:11px;padding:8px 10px;font-size:11px}.hidden{display:none!important} .response-mode-wrap{margin-top:12px;padding-top:12px;border-top:1px solid #222}.response-mode-label{font-size:11px;color:#777;margin-bottom:8px}.response-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.response-mode{background:#111;border:1px solid #292929;border-radius:13px;padding:10px;text-align:right;color:#ddd}.response-mode strong{display:block;font-size:12px}.response-mode small{display:block;color:#666;font-size:10px;margin-top:3px}.response-mode.active{background:#1b1b1b;border-color:#777}.mode-current{margin-top:8px;color:#888;font-size:10px}
+.attachments{width:min(720px,94vw);display:flex;gap:7px;flex-wrap:wrap;margin:0 auto 5px;padding:0 4px}.attachment{display:flex;align-items:center;gap:7px;padding:7px 10px;background:#151515;border:1px solid #292929;border-radius:12px;color:#bbb;font-size:11px}.attachment button{background:transparent;color:#777;padding:0;font-size:16px}.plus-btn{width:46px;height:46px;border-radius:16px;background:#171717;color:#fff;border:1px solid #292929;display:grid;place-items:center}.plus-btn svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}.voice-orb{width:46px;height:46px;border-radius:50%;background:#111;border:1px solid #292929;display:flex;align-items:center;justify-content:center;gap:2px;position:relative}.voice-orb span,.voice-orb i,.voice-orb b,.voice-orb em{display:block;width:2px;border-radius:3px;background:#ddd;height:8px}.voice-orb i{height:13px}.voice-orb b{height:19px}.voice-orb em{height:11px}.voice-orb.active span,.voice-orb.active i,.voice-orb.active b,.voice-orb.active em{animation:voicebars .55s infinite alternate}.voice-orb.active i{animation-delay:.1s}.voice-orb.active b{animation-delay:.18s}.voice-orb.active em{animation-delay:.28s}@keyframes voicebars{from{transform:scaleY(.55)}to{transform:scaleY(1.25)}}
+#accountPanel{z-index:12}.side-item svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media (orientation:landscape){header{height:58px}.main{padding:8px}.visualizer{height:86px}.composer{margin-bottom:10px}.chat{inset:58px 0 78px;padding-bottom:24px}}
+
+/* V10 CHATGPT-STYLE SIDEBAR */
+.menu-btn{width:44px;height:44px;border-radius:14px;background:#111;border:1px solid #252525;display:flex;align-items:center;justify-content:center;font-size:0}
+.menu-btn svg,.icon-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sidebar{position:fixed;inset:0 auto 0 0;width:min(330px,88vw);background:#0b0b0b;border-right:1px solid #242424;z-index:100;transform:translateX(-105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);padding:14px;display:flex;flex-direction:column;box-shadow:18px 0 50px rgba(0,0,0,.35)}
+.sidebar.open{transform:translateX(0)}
+.side-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);z-index:90;display:none}
+.side-backdrop.show{display:block}
+.side-top{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.new-chat{flex:1;height:46px;border:1px solid #2a2a2a;background:#151515;color:#fff;border-radius:14px;text-align:left;padding:0 14px;font-weight:650}
+.side-section{font-size:11px;color:#777;padding:12px 9px 7px}
+.chat-list{overflow:auto;flex:1}
+.chat-row{display:flex;align-items:center;gap:8px;padding:10px;border-radius:12px;color:#ddd;margin-bottom:3px;cursor:pointer}
+.chat-row:hover,.chat-row.active{background:#181818}
+.chat-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
+.icon-btn{width:34px;height:34px;border:0;background:transparent;color:#777;border-radius:9px;display:flex;align-items:center;justify-content:center}
+.icon-btn:hover{background:#242424;color:#fff}
+.side-bottom{border-top:1px solid #222;padding-top:10px}
+.side-item{width:100%;height:44px;background:transparent;color:#ddd;border:0;border-radius:12px;text-align:left;padding:0 10px;display:flex;align-items:center;gap:10px}
+.side-item:hover{background:#181818}
+.gmail-dot{width:8px;height:8px;border-radius:50%;background:#777;margin-left:auto}.gmail-dot.on{background:#fff}
+
+.message-tools{display:flex;gap:6px;justify-content:flex-end;margin:6px 0 2px}.message-tools button{width:34px;height:30px;border:1px solid #292929;background:#0d0d0d;border-radius:9px;color:#aaa;display:grid;place-items:center}.message-tools svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7}.bubble-wrap{max-width:min(680px,88%);align-self:flex-end;margin:7px 0}.bubble-wrap .bubble{max-width:100%;margin:0}.bubble-wrap.user{align-self:flex-start}.send.stop{background:#eee;color:#111}.send.stop svg{display:none}.send.stop:after{content:"";width:13px;height:13px;background:#111;border-radius:3px;display:block}.processing .typing-cursor{width:18px;height:18px;border:2px solid #444;border-top-color:#eee;border-radius:50%;background:transparent;animation:spin .7s linear infinite;vertical-align:-5px}@keyframes spin{to{transform:rotate(360deg)}}.uploading{position:fixed;inset:0;z-index:140;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.42);backdrop-filter:blur(5px)}.uploading.show{display:flex}.upload-card{width:min(280px,82vw);padding:24px;border:1px solid #303030;background:#101010;border-radius:22px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.55)}.upload-spinner{width:42px;height:42px;margin:0 auto 14px;border:2px solid #333;border-top-color:#eee;border-radius:50%;animation:spin .8s linear infinite}.upload-card strong{display:block;font-size:14px}.upload-card small{display:block;color:#777;margin-top:6px}.attachment.image{padding:5px}.attachment.image img{width:54px;height:54px;object-fit:cover;border-radius:10px;display:block}
+
+/* V18 stability */
+.voice-page{position:fixed;inset:0;background:radial-gradient(circle at 50% 42%,#181818 0,#0b0b0b 48%,#050505 100%);z-index:200;display:none;flex-direction:column;padding:env(safe-area-inset-top) 18px env(safe-area-inset-bottom);overflow:hidden}
+.voice-page.open{display:flex}.voice-head{height:58px;display:flex;align-items:center;justify-content:space-between}.voice-head strong{font-size:14px;letter-spacing:1.5px}.voice-close{width:42px;height:42px;border:1px solid #292929;background:#111;border-radius:13px;font-size:24px;color:#bbb}
+.voice-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}.voice-state{font-size:12px;letter-spacing:2px;color:#888}.voice-ring{width:170px;height:170px;border-radius:50%;border:1px solid #303030;display:grid;place-items:center;background:radial-gradient(circle,#262626 0,#111 48%,#080808 70%);box-shadow:0 0 80px rgba(255,255,255,.05)}.voice-ring.active{animation:voiceRing 1.5s ease-in-out infinite}.voice-ring .voice-orb{position:static;width:82px;height:82px;opacity:.5}.voice-hint{font-size:13px;color:#777;text-align:center;max-width:280px;line-height:1.7}.voice-bottom{padding:14px 0 18px;display:flex;justify-content:center;align-items:center;gap:14px}.voice-mute{width:46px;height:46px;border-radius:50%;background:#111;border:1px solid #292929;display:grid;place-items:center}.voice-mute svg{width:19px;height:19px;fill:none;stroke:#ddd;stroke-width:1.7}.voice-mute.muted{background:#eee}.voice-mute.muted svg{stroke:#111}.voice-main-btn{width:64px;height:64px;border-radius:50%;background:#eee;color:#111;border:0;font-size:0;display:grid;place-items:center}.voice-main-btn:after{content:'';width:16px;height:16px;background:#111;border-radius:50%}.voice-main-btn.active{background:#181818;box-shadow:0 0 0 5px rgba(255,255,255,.04);border:1px solid #333}.voice-main-btn.active:after{width:16px;height:16px;border-radius:4px;background:#eee}@keyframes voiceRing{50%{transform:scale(1.025);box-shadow:0 0 100px rgba(255,255,255,.09)}}
+.image-studio{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(9px);display:none;align-items:flex-end;justify-content:center;z-index:220}.image-studio.open{display:flex}.image-card{width:min(720px,100%);background:#0b0b0b;border:1px solid #292929;border-bottom:0;border-radius:26px 26px 0 0;padding:18px 16px max(20px,env(safe-area-inset-bottom));max-height:88dvh;overflow:auto}.image-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.image-head strong{font-size:13px;letter-spacing:1.7px}.image-card textarea{width:100%;height:110px;resize:none;background:#111;color:#fff;border:1px solid #292929;border-radius:15px;padding:13px;outline:none}.image-options{display:flex;gap:8px;margin:10px 0}.image-options select{flex:1;background:#111;color:#ddd;border:1px solid #292929;border-radius:12px;padding:11px}.generate-image{width:100%;padding:13px;border-radius:14px;background:#eee;color:#111;font-weight:700}.image-result{margin-top:14px;min-height:10px}.image-result img{display:block;width:100%;max-height:55dvh;object-fit:contain;border-radius:16px;border:1px solid #292929}.image-loading{padding:28px;text-align:center;color:#888;border:1px solid #222;border-radius:15px}.command-action.image-action{margin-top:8px}
+.chat-orbs{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;opacity:.72}
+.chat-orbs i{position:absolute;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.20),rgba(255,255,255,.055) 45%,transparent 72%);filter:blur(1px);animation:orbFloat 14s ease-in-out infinite}
+.chat-orbs i:nth-child(1){left:7%;top:18%;animation-delay:-2s}.chat-orbs i:nth-child(2){right:9%;top:25%;width:75px;height:75px;animation-delay:-7s}.chat-orbs i:nth-child(3){left:20%;bottom:12%;width:85px;height:85px;animation-delay:-10s}.chat-orbs i:nth-child(4){right:20%;bottom:18%;width:125px;height:125px;animation-delay:-4s}.chat-orbs i:nth-child(5){left:47%;top:7%;width:52px;height:52px;animation-delay:-12s}
+@keyframes orbFloat{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(22px,-28px,0) scale(1.12)}}
+.v29-shape{position:absolute;display:block;opacity:.16;pointer-events:none;filter:blur(.2px);mix-blend-mode:screen;animation:shapeDrift var(--dur,16s) ease-in-out infinite alternate;transform:translate3d(0,0,0) rotate(0deg)}
+.v29-shape.square{width:34px;height:34px;border:1px solid rgba(255,255,255,.42);border-radius:9px;background:rgba(255,255,255,.025)}
+.v29-shape.diamond{width:26px;height:26px;border:1px solid rgba(255,255,255,.35);transform:rotate(45deg);border-radius:6px;background:rgba(255,255,255,.018)}
+.v29-shape.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);box-shadow:0 0 20px rgba(255,255,255,.14)}
+.v29-shape.ring{width:58px;height:58px;border:1px solid rgba(255,255,255,.22);border-radius:50%}
+@keyframes shapeDrift{0%{translate:0 0;rotate:0deg;opacity:.08}50%{opacity:.22}100%{translate:var(--dx,28px) var(--dy,-34px);rotate:var(--rot,35deg);opacity:.14}}
+.chat-orbs .v29-shape{z-index:1}.chat-orbs i{z-index:0}
+.app{position:relative;z-index:1}
+.chat{z-index:3}
+.chat-inner{position:relative;z-index:4}
+.chat .bubble{position:relative;z-index:5;backdrop-filter:blur(10px);box-shadow:0 8px 28px rgba(0,0,0,.18)}
+.voice-camera{position:absolute;top:18px;left:18px;width:42px;height:42px;border-radius:14px;background:#151515;border:1px solid #292929;color:#fff;display:grid;place-items:center;font-size:17px;z-index:4}.voice-camera:active{transform:scale(.96)}
+.tts-player{position:fixed;top:calc(env(safe-area-inset-top) + 10px);left:12px;right:12px;height:58px;background:rgba(20,20,20,.94);border:1px solid #353535;border-radius:17px;z-index:500;display:none;align-items:center;gap:10px;padding:7px 9px;box-shadow:0 14px 40px rgba(0,0,0,.35);backdrop-filter:blur(18px)}
+.tts-player.open{display:flex}.tts-player.max{height:86px;top:calc(env(safe-area-inset-top) + 10px)}
+.tts-player-left{display:flex;align-items:center;gap:9px;min-width:130px}.tts-player-left strong{font-size:11px;letter-spacing:1px}.tts-player-left small{display:block;color:#888;font-size:10px;margin-top:3px;max-width:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tts-mini-play,.tts-actions button{width:38px;height:38px;border-radius:12px;border:1px solid #333;background:#111;color:#eee;display:grid;place-items:center}.tts-mini-play{font-size:12px}.tts-progress{height:3px;flex:1;background:#292929;border-radius:99px;overflow:hidden}.tts-progress div{height:100%;width:0;background:#eee;border-radius:99px;transition:width .08s linear}.tts-actions{display:flex;gap:5px}.tts-actions button{font-size:19px;color:#aaa}.tts-actions button:first-child{font-size:17px}.tts-player.max .tts-mini-play{width:46px;height:46px}.tts-player.max .tts-player-left small{max-width:180px}
+.chat-orbs{opacity:1;z-index:1}.chat-orbs i{background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.34),rgba(190,190,190,.12) 42%,rgba(255,255,255,.025) 70%,transparent 74%);box-shadow:0 0 35px rgba(255,255,255,.07);mix-blend-mode:screen}.chat-orbs i:nth-child(1){width:145px;height:145px}.chat-orbs i:nth-child(2){width:92px;height:92px}.chat-orbs i:nth-child(3){width:105px;height:105px}.chat-orbs i:nth-child(4){width:155px;height:155px}.chat-orbs i:nth-child(5){width:64px;height:64px}
+
+/* V28 visual background + first-screen login */
+.v28-squares{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;opacity:.42}
+.v28-squares i{position:absolute;width:7px;height:7px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.025);transform:translate3d(0,0,0);animation:v28float linear infinite}
+.v28-squares i:nth-child(3n){width:11px;height:11px}.v28-squares i:nth-child(4n){width:5px;height:5px}.v28-squares i:nth-child(5n){border-radius:2px}
+@keyframes v28float{0%{transform:translate3d(0,110vh,0) rotate(0deg);opacity:0}12%{opacity:.7}50%{transform:translate3d(35px,45vh,0) rotate(90deg)}88%{opacity:.45}100%{transform:translate3d(-25px,-15vh,0) rotate(180deg);opacity:0}}
+.v28-login{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(2,2,2,.78);backdrop-filter:blur(18px);transition:.35s ease}
+.v28-login.hide{opacity:0;pointer-events:none;visibility:hidden}.v28-login-card{width:min(420px,92vw);padding:28px 22px;border:1px solid #303030;border-radius:28px;background:linear-gradient(180deg,rgba(22,22,22,.98),rgba(8,8,8,.98));box-shadow:0 30px 100px rgba(0,0,0,.7);text-align:center}.v28-login-logo{width:70px;height:70px;margin:0 auto 16px;border:1px solid #555;border-radius:22px;display:grid;place-items:center;font-weight:800;letter-spacing:2px;box-shadow:0 0 40px rgba(255,255,255,.06)}.v28-login-card h1{margin:0;font-size:24px}.v28-login-card p{color:#888;line-height:1.8;font-size:13px;margin:10px 0 20px}.v28-google,.v28-gmail{width:100%;min-height:50px;border-radius:15px;background:#fff;color:#111;font-weight:700;border:1px solid #ddd}.v28-gmail{margin-top:9px;background:#171717;color:#fff;border-color:#333}.v28-guest{width:100%;min-height:46px;margin-top:9px;border-radius:15px;background:#151515;color:#ddd;border:1px solid #2c2c2c}.v28-inline-error{display:none;width:100%;margin-top:10px;padding:10px 12px;border:1px solid #3a3a3a;border-radius:13px;background:rgba(28,28,28,.9);color:#cfcfcf;font-size:11px;line-height:1.7;text-align:right}.v28-inline-error.show{display:block}.v28-client-wrap{display:flex;gap:7px;margin-top:10px}.v28-client{min-width:0;flex:1;background:#111;border:1px solid #292929;color:#fff;border-radius:12px;padding:10px;font-size:11px;outline:none;direction:ltr}.v28-save-client{background:#222;color:#eee;border:1px solid #333;border-radius:12px;padding:0 10px;font-size:10px}.v28-login-note{display:block;color:#666;font-size:10px;margin-top:12px;line-height:1.7}
+.v28-camera-tools{position:absolute;left:16px;right:16px;bottom:max(18px,env(safe-area-inset-bottom));display:flex;gap:8px;justify-content:center;z-index:2}.v28-camera-tools button{padding:11px 14px;border-radius:13px;background:#eee;color:#111;font-weight:650}.v28-camera-tools button.secondary{background:#171717;color:#eee;border:1px solid #333}
+.v28-read-result{position:absolute;left:16px;right:16px;bottom:85px;max-height:30vh;overflow:auto;padding:13px 15px;border:1px solid #333;border-radius:16px;background:rgba(10,10,10,.86);backdrop-filter:blur(8px);font-size:13px;line-height:1.7;z-index:2;display:none}.v28-read-result.show{display:block}
+.app{position:relative;z-index:1}.chat-orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}.chat{position:absolute;z-index:3}.composer{z-index:8}
+</style>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+/* =====================================================
+   JARVIS RADMAN V13 — PERSONAL CONFIG
+   Put your own private keys here for a single-device build.
+   WARNING: anything in a browser HTML file can be inspected.
+   Never publish this file with real API secrets inside it.
+===================================================== */
+const JARVIS_PRIVATE_CONFIG = {
+  // For a personal build you can place your key in this constant.
+  // It is intentionally blank in the distributed file.
+  GROQ_API_KEY: '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',
+  FISH_API_KEY: 'sk-fish-R71hhrOi3FDEt1XOznFVaMIQ_lLkP7gdCi8xwMO8WH0',
+  API_BASE: '/api',
+  GROQ_MODEL: 'openai/gpt-oss-120b',
+  FISH_REFERENCE_ID: '711cf3ed00ab441a8f54a45058047b7a',
+  FISH_AUDIO_MODEL: 's2.1-pro',
+  GOOGLE_OAUTH_CLIENT_ID: localStorage.getItem('JARVIS_GMAIL_CLIENT_ID') || '',
+  GMAIL_SCOPES: 'https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/gmail.labels'
+};
+const JARVIS_DIRECT={
+  key:(JARVIS_PRIVATE_CONFIG.GROQ_API_KEY||localStorage.getItem('JARVIS_GROQ_KEY')||''),
+  endpoint:'https://api.groq.com/openai/v1/chat/completions',
+  setKey(v){this.key=String(v||'').trim();if(this.key)localStorage.setItem('JARVIS_GROQ_KEY',this.key);else localStorage.removeItem('JARVIS_GROQ_KEY')},
+  hasKey(){return !!this.key}
+};
+const JARVIS_API={
+  base:(localStorage.getItem('JARVIS_API_BASE') || (location.protocol==='file:' ? '' : JARVIS_PRIVATE_CONFIG.API_BASE)).replace(/\/$/,''),
+  available:false,
+  async health(){
+    if(location.protocol==='file:') return {ok:false,reason:'FILE_PROTOCOL'};
+    const candidates=[this.base+'/health',this.base+'/chat'];
+    for(const u of candidates){try{const r=await fetch(u,{method:'GET',cache:'no-store'});if(r.ok||r.status===405||r.status===401){this.available=true;return {ok:true,url:u,status:r.status}}}catch(e){}}
+    return {ok:false,reason:'BACKEND_UNREACHABLE'};
+  },
+  url(path){return this.base+path},
+  async json(path,body,signal){const r=await fetch(this.url(path),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal});if(!r.ok){const e=new Error('API '+r.status);e.status=r.status;e.detail=await r.text().catch(()=> '');throw e}return r.json()}
+};
+
+const savedClientId = localStorage.getItem('JARVIS_GMAIL_CLIENT_ID') || JARVIS_PRIVATE_CONFIG.GOOGLE_OAUTH_CLIENT_ID || '';
+const JARVIS_GMAIL={clientId:localStorage.getItem('JARVIS_GMAIL_CLIENT_ID')||JARVIS_PRIVATE_CONFIG.GOOGLE_OAUTH_CLIENT_ID||'',token:null,scopes:JARVIS_PRIVATE_CONFIG.GMAIL_SCOPES,setClientId(v){this.clientId=v.trim();if(this.clientId)localStorage.setItem('JARVIS_GMAIL_CLIENT_ID',this.clientId);else localStorage.removeItem('JARVIS_GMAIL_CLIENT_ID');updateGmailUI()},disconnect(){const t=this.token;if(t&&window.google?.accounts?.oauth2)google.accounts.oauth2.revoke(t,()=>{});this.token=null;localStorage.removeItem('JARVIS_GMAIL_CONNECTED');updateGmailUI();toastMsg('Gmail قطع شد')},async api(path,opts={}){if(!this.token)throw Error('Gmail وصل نیست');const r=await fetch('https://gmail.googleapis.com/gmail/v1/users/me/'+path,{...opts,headers:{Authorization:'Bearer '+this.token,'Content-Type':'application/json',...(opts.headers||{})}});if(!r.ok)throw Error(await r.text());return r.json()},async list(q='in:inbox',n=10){return this.api('messages?'+new URLSearchParams({q,maxResults:n}))},async msg(id){return this.api('messages/'+encodeURIComponent(id)+'?format=full')},async modify(id,body){return this.api('messages/'+encodeURIComponent(id)+'/modify',{method:'POST',body:JSON.stringify(body)})},async trash(id){return this.api('messages/'+encodeURIComponent(id)+'/trash',{method:'POST'})},async send(to,subject,body){const raw=['To: '+to,'Subject: '+subject,'Content-Type: text/plain; charset="UTF-8"','',body].join('\r\n');const b64=btoa(unescape(encodeURIComponent(raw))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');return this.api('messages/send',{method:'POST',body:JSON.stringify({raw:b64})})}};
+function waitForGoogleIdentity(timeout=10000){return new Promise((resolve,reject)=>{const started=Date.now();(function check(){if(window.google?.accounts?.oauth2)return resolve();if(Date.now()-started>timeout)return reject(Error('GIS_TIMEOUT'));setTimeout(check,120)})()})}
+function openGmailPanel(){const el=$('#gmailPanel');if(!el)return;$('#gmailClientIdInput').value=JARVIS_GMAIL.clientId||'';updateGmailUI();el.classList.add('open')}
+function updateGmailUI(){const connected=!!JARVIS_GMAIL.token;const text=$('#gmailStatusText'),badge=$('#gmailStatusBadge'),btn=$('#gmailConnectBtn');if(text)text.textContent=connected?'Gmail متصل است':'متصل نیست';if(badge){badge.textContent=connected?'ON':'OFF';badge.classList.toggle('on',connected)}if(btn)btn.textContent=connected?'اتصال مجدد':'اتصال'}
+async function startGmailOAuth(){const id=(JARVIS_GMAIL.clientId||$('#gmailClientIdInput')?.value||'').trim();if(!id){openGmailPanel();toastMsg('اول Google OAuth Client ID را وارد کن');return}JARVIS_GMAIL.setClientId(id);if(location.protocol==='file:'){toastMsg('Gmail روی فایل file:// کار نمی‌کند؛ JARVIS را روی HTTPS اجرا کن');return}try{await waitForGoogleIdentity();const c=google.accounts.oauth2.initTokenClient({client_id:id,scope:JARVIS_GMAIL.scopes,callback:r=>{if(r.error){console.error(r);toastMsg('اتصال Gmail ناموفق بود');updateGmailUI();return}JARVIS_GMAIL.token=r.access_token;localStorage.setItem('JARVIS_GMAIL_CONNECTED','1');updateGmailUI();toastMsg('Gmail وصل شد')},error_callback:e=>{console.error(e);toastMsg('پنجره ورود Google باز نشد')}});c.requestAccessToken({prompt:'consent'})}catch(e){console.error(e);toastMsg(e.message==='GIS_TIMEOUT'?'Google Login بارگذاری نشد؛ صفحه را یک‌بار رفرش کن':'اتصال Gmail ناموفق بود')}}
+function gmailConnect(){openGmailPanel();if(JARVIS_GMAIL.clientId)startGmailOAuth()}
+function updateGmailDot(){const d=document.getElementById('gmailDot');if(d)d.classList.toggle('on',!!JARVIS_GMAIL.token)}
+document.querySelectorAll(".voice-preset[data-fish-model]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".voice-preset[data-fish-model]").forEach(x=>x.classList.remove("active"));b.classList.add("active");localStorage.setItem("JARVIS_FISH_MODEL",b.dataset.fishModel);toastMsg("مدل صدا: "+b.textContent)}));
+document.querySelectorAll(".voice-preset[data-voice-style]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".voice-preset[data-voice-style]").forEach(x=>x.classList.remove("active"));b.classList.add("active");localStorage.setItem("JARVIS_VOICE_STYLE",b.dataset.voiceStyle);toastMsg("حالت صدا: "+b.textContent)}));
+document.getElementById('deleteNo')?.addEventListener('click',()=>{pendingDeleteId=null;document.getElementById('deleteConfirm')?.classList.remove('open')});document.getElementById('deleteYes')?.addEventListener('click',()=>{if(pendingDeleteId)finishDeleteChat(pendingDeleteId);pendingDeleteId=null;document.getElementById('deleteConfirm')?.classList.remove('open')});document.getElementById('deleteConfirm')?.addEventListener('click',e=>{if(e.target.id==='deleteConfirm'){pendingDeleteId=null;e.currentTarget.classList.remove('open')}});
+(function initV29Background(){
+  const host=document.getElementById('v29BackgroundShapes'); if(!host)return;
+  const defs=[['square',8,12,'-','+'],['diamond',84,18,'+','-'],['dot',16,54,'+','+'],['ring',72,62,'-','+'],['square',55,82,'+','-'],['dot',91,40,'-','-'],['diamond',35,28,'+','-'],['ring',12,82,'+','+'],['dot',62,12,'-','+'],['square',42,58,'+','+']];
+  defs.forEach((d,i)=>{const el=document.createElement('i');el.className='v29-shape '+d[0];el.style.left=d[1]+'%';el.style.top=d[2]+'%';el.style.setProperty('--dx',(d[3]==='+'?1:-1)*(18+i*3)+'px');el.style.setProperty('--dy',(d[4]==='+'?-1:1)*(16+i*2)+'px');el.style.setProperty('--rot',(i%2?'45deg':'25deg'));el.style.setProperty('--dur',(13+i%6)+'s');el.style.animationDelay=(-i*1.7)+'s';host.appendChild(el)});
+})();
+(function hardenSendButton(){
+  const b=document.getElementById('sendBtn'); if(!b)return;
+  b.addEventListener('click',()=>{setTimeout(()=>{if(!activeController && normalizeUserText(input.value)){sendText(input.value).catch(e=>console.error('JARVIS send error:',e))}},0)});
+})();</script>
+
+<style id="v32-style">
+.v32-tools{position:fixed;left:12px;right:12px;bottom:92px;z-index:80;display:none;gap:8px;flex-wrap:wrap;padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:rgba(12,14,24,.94);backdrop-filter:blur(18px);box-shadow:0 18px 60px #0008}.v32-tools.open{display:flex}.v32-tool{flex:1 1 calc(33.333% - 8px);min-width:95px;padding:12px 8px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:#ffffff09;color:#fff;font-weight:700}.v32-tool small{display:block;opacity:.55;font-weight:500;margin-top:4px}.v32-modes{display:flex;gap:6px;overflow:auto;padding:4px 0 8px;width:100%}.v32-chip{white-space:nowrap;border:1px solid #ffffff14;background:#ffffff08;color:#ddd;padding:8px 11px;border-radius:999px}.v32-chip.active{background:#ffffff18;border-color:#ffffff35}.v32-panel{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;background:#0008}.v32-panel.open{display:flex}.v32-card{width:min(680px,100%);max-height:88vh;overflow:auto;border-radius:28px 28px 0 0;background:#111522;color:#fff;padding:20px;box-shadow:0 -20px 80px #0009}.v32-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.v32-close{border:0;background:#ffffff0d;color:#fff;border-radius:12px;font-size:24px;width:42px;height:42px}.v32-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.v32-card button,.v32-card input,.v32-card textarea{font:inherit}.v32-action{padding:13px;border:1px solid #ffffff12;border-radius:15px;background:#ffffff08;color:#fff;text-align:right}.v32-action strong{display:block}.v32-action small{opacity:.55}.v32-field{width:100%;box-sizing:border-box;padding:13px;border:1px solid #ffffff15;background:#ffffff08;color:#fff;border-radius:14px;margin:6px 0 10px}.v32-status{padding:12px;border-radius:14px;background:#ffffff08;margin:10px 0;color:#bfc5d9}.v32-preview{width:100%;max-height:45vh;object-fit:contain;border-radius:18px;background:#000;margin-top:10px}.v32-camera{position:relative;overflow:hidden;border-radius:20px;background:#000}.v32-camera video{display:block;width:100%;max-height:55vh;object-fit:cover}.v32-camera-controls{display:flex;gap:8px;margin-top:10px}.v32-result{white-space:pre-wrap;line-height:1.8;background:#ffffff07;border-radius:16px;padding:14px;margin-top:12px}.v32-progress{height:5px;background:#ffffff10;border-radius:99px;overflow:hidden}.v32-progress i{display:block;height:100%;width:0;background:currentColor;transition:width .2s}.v32-badge{display:inline-block;padding:5px 9px;border-radius:999px;background:#ffffff0c;font-size:12px;margin:3px}.v32-toast{position:fixed;top:72px;left:50%;transform:translateX(-50%) translateY(-12px);opacity:0;pointer-events:none;z-index:300;padding:10px 14px;border-radius:14px;background:#111827;color:#fff;border:1px solid #ffffff18;transition:.2s}.v32-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}@media(max-width:560px){.v32-grid{grid-template-columns:1fr}.v32-tool{flex-basis:calc(50% - 8px)}.v32-card{padding:16px}}
+</style>
+</head>
+<body>
+<div class="v28-squares" id="v28Squares" aria-hidden="true"></div>
+<div class="v29-background-shapes" id="v29BackgroundShapes" aria-hidden="true"></div>
+<div class="v28-login" id="v28Login">
+  <div class="v28-login-card">
+    <div class="v28-login-logo">J</div>
+    <h1>JARVIS / RADMAN</h1>
+    <p>برای ادامه وارد اکانتت شو. ورود با Google از سرویس رسمی Google Identity Services استفاده می‌کند.</p>
+    <button class="v28-google" id="v28GoogleLogin">ورود با Google</button>
+    <button class="v28-gmail" id="v28GmailLogin">اتصال Gmail</button>
+    <button class="v28-guest" id="v28GuestLogin">ادامه بدون ورود</button>
+    <div class="v28-inline-error" id="v28LoginError" role="status" aria-live="polite"></div>
+    <div class="v28-client-wrap" id="v28ClientWrap">
+      <input class="v28-client" id="v28ClientId" placeholder="Google Client ID — اختیاری" autocomplete="off" spellcheck="false">
+      <button class="v28-save-client" id="v28SaveClient">ذخیره Client ID</button>
+    </div>
+    <small class="v28-login-note" id="v28LoginNote">اگر Google باز نشد، خطای دقیق همین‌جا نمایش داده می‌شود. برای ورود واقعی باید Client ID پروژه Google روی دامنهٔ فعلی مجاز باشد.</small>
+  </div>
+</div>
+<div class="confirm-modal" id="nameModal"><div class="confirm-card"><h3>اسمت چیه؟</h3><p>اسمت رو بنویس تا JARVIS از این به بعد با اسم خودت بهت خوش‌آمد بگه.</p><input id="nameInput" class="field" style="width:100%;margin-top:14px" placeholder="مثلاً احسان" maxlength="30" autocomplete="name"><div class="confirm-actions"><button class="yes" id="saveName">ادامه</button></div></div></div><div class="confirm-modal" id="deleteConfirm"><div class="confirm-card"><h3>حذف چت</h3><p>مطمئنی می‌خوای این چت کامل پاک بشه؟ این کار قابل برگشت نیست.</p><div class="confirm-actions"><button id="deleteNo">لغو</button><button class="yes" id="deleteYes">بله، پاکش کن</button></div></div></div>
+
+<div id="sideBackdrop" class="side-backdrop" onclick="closeSidebar()"></div>
+<aside id="sidebar" class="sidebar">
+  <div class="side-top">
+    <button class="new-chat" onclick="newChat()">＋ چت جدید</button>
+    <button class="icon-btn" onclick="closeSidebar()" aria-label="close">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="side-section">چت‌های قبلی</div>
+  <div id="chatList" class="chat-list"></div>
+  <div class="side-bottom">
+  <button class="side-item" id="accountBtn">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c.8-4 3.2-6 7-6s6.2 2 7 6"/></svg>
+    <span id="accountLabel">اکانت</span>
+  </button>
+  <button class="side-item" id="settingsSideBtn">
+    <svg viewBox="0 0 24 24"><path d="M12 8.4a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Z"/><path d="m19.4 13.2.1-1.2-.1-1.2 1.5-1.2-1.7-3-1.8.7a7.8 7.8 0 0 0-2-1.2L15.1 4h-3.5l-.3 2.1a7.8 7.8 0 0 0-2 1.2l-1.8-.7-1.7 3 1.7 3-1.7 1.2 1.7 3 1.8-.7a7.8 7.8 0 0 0 2 1.2l.3 2.1h3.5l.3-2.1a7.8 7.8 0 0 0 2-1.2l1.8.7 1.7-3-1.5-1.2Z"/></svg>
+    تنظیمات
+  </button>
+    <button class="side-item" onclick="closeSidebar();gmailConnect()">
+      <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v6h-6"/></svg> اتصال Gmail
+    </button>
+    <button class="side-item" onclick="JARVIS_GMAIL.disconnect();closeSidebar();toastMsg('Gmail disconnected')">
+      <svg viewBox="0 0 24 24"><path d="M9 6h10"/><path d="M15 3l4 3-4 3"/><path d="M19 12a7 7 0 1 1-7-7"/></svg> قطع اتصال Gmail
+    </button>
+  </div>
+</aside>
+<div class="tts-player" id="ttsPlayer" aria-hidden="true">
+  <div class="tts-player-left"><button class="tts-mini-play" id="ttsPlay" aria-label="پخش">▶</button><div><strong>JARVIS</strong><small id="ttsNow">در حال آماده‌سازی صدا...</small></div></div>
+  <div class="tts-progress"><div id="ttsProgress"></div></div>
+  <div class="tts-actions"><button id="ttsMax" aria-label="بزرگ‌نمایی">⛶</button><button id="ttsClose" aria-label="بستن">×</button></div>
+</div><div class="voice-page" id="voicePage"><div class="voice-head"><strong>JARVIS VOICE</strong><button class="voice-close" id="voiceClose" type="button">×</button></div><div class="voice-center"><div class="voice-state" id="voiceState">آماده</div><div class="voice-ring" id="voiceRing"><div class="voice-orb"><span></span><i></i><b></b><em></em></div></div><div class="voice-hint" id="voiceHint">برای شروع مکالمه صوتی روی دکمه پایین بزن</div><div class="voice-select" style="justify-content:center;margin-top:14px"><button class="voice-preset active" data-voice-style="natural">طبیعی</button><button class="voice-preset" data-voice-style="calm">آرام</button><button class="voice-preset" data-voice-style="energetic">پرانرژی</button><button class="voice-preset" data-voice-style="cinematic">سینمایی</button><button class="voice-preset" data-voice-style="whisper">آرامِ نجوا</button></div></div><div class="voice-bottom"><button class="voice-mute" id="voiceMute" type="button" aria-label="بی‌صدا کردن"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="m17 9 4 6M21 9l-4 6"/></svg></button><button class="voice-main-btn" id="voiceMainBtn" type="button" aria-label="شروع دستیار صوتی"></button></div></div><div class="image-studio" id="imageStudio"><div class="image-card"><div class="image-head"><strong>JARVIS IMAGE</strong><button class="close" id="closeImageStudio">×</button></div><textarea id="imagePrompt" placeholder="چی بسازم؟"></textarea><div class="image-options"><select id="imageSize"><option value="1024x1024">مربع</option><option value="1024x1536">عمودی</option><option value="1536x1024">افقی</option></select><select id="imageQuality"><option value="auto">خودکار</option><option value="medium">متوسط</option><option value="high">بالا</option></select></div><button id="generateImageBtn" class="generate-image">ساخت تصویر</button><div id="imageResult" class="image-result"></div></div></div><div class="uploading" id="uploading"><div class="upload-card"><div class="upload-spinner"></div><strong>دارم عکس رو بررسی می‌کنم...</strong><small>JARVIS فقط بر اساس تصویر و درخواستت جواب می‌دهد</small></div></div><div class="chat-orbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+<div class="v32-tools" id="v32Tools">
+  <div class="v32-modes">
+    <button class="v32-chip active" data-v32-mode="normal">عادی</button><button class="v32-chip" data-v32-mode="thinking">🧠 فکر عمیق</button><button class="v32-chip" data-v32-mode="deepsearch">🔎 Deep Search</button><button class="v32-chip" data-v32-mode="web">🌐 Google</button><button class="v32-chip" data-v32-mode="homework">📚 تکالیف</button>
+  </div>
+  <button class="v32-tool" data-v32-action="upload">📎 آپلود<small>عکس و فایل</small></button>
+  <button class="v32-tool" data-v32-action="camera">📷 دوربین<small>Vision</small></button>
+  <button class="v32-tool" data-v32-action="github">🐙 GitHub<small>Repo / Code / Issue</small></button>
+  <button class="v32-tool" data-v32-action="search">🔎 جستجو<small>Google</small></button>
+  <button class="v32-tool" data-v32-action="image">🎨 تصویر<small>Image Studio</small></button>
+  <button class="v32-tool" data-v32-action="voice">🎙️ صدا<small>Voice Assistant</small></button>
+</div>
+<div class="v32-panel" id="v32Github"><div class="v32-card"><div class="v32-head"><strong>🐙 GitHub Control Center</strong><button class="v32-close" data-v32-close="v32Github">×</button></div><div class="v32-status" id="v32GithubStatus">آماده اتصال. برای عملیات خصوصی، JARVIS باید از اتصال امن GitHub/Backend استفاده کند.</div><div class="v32-grid"><button class="v32-action" data-gh="repos"><strong>📦 Repositoryها</strong><small>لیست ریپوها</small></button><button class="v32-action" data-gh="profile"><strong>👤 پروفایل</strong><small>اطلاعات حساب</small></button><button class="v32-action" data-gh="issues"><strong>🐞 Issueها</strong><small>نمایش Issue</small></button><button class="v32-action" data-gh="prs"><strong>🔀 Pull Request</strong><small>نمایش PRها</small></button></div><input class="v32-field" id="v32GhRepo" placeholder="owner/repository"><input class="v32-field" id="v32GhPath" placeholder="مسیر فایل، مثلاً src/app.js"><div class="v32-grid"><button class="v32-action" data-gh="file"><strong>📄 خواندن فایل</strong><small>بررسی کد</small></button><button class="v32-action" data-gh="open"><strong>🌐 باز کردن</strong><small>در GitHub</small></button></div><div class="v32-result" id="v32GhResult">نتیجه عملیات اینجا نمایش داده می‌شود.</div></div></div>
+<div class="v32-panel" id="v32Homework"><div class="v32-card"><div class="v32-head"><strong>📚 Homework Scanner</strong><button class="v32-close" data-v32-close="v32Homework">×</button></div><div class="v32-status">یک یا چند عکس از صفحه بفرست؛ JARVIS تصویر را برای حل سؤال‌ها آماده می‌کند.</div><input class="v32-field" id="v32HomeworkInput" type="file" accept="image/*" multiple><div id="v32HomeworkPreview"></div><button class="v32-action" id="v32SolveHomework" style="width:100%;margin-top:10px"><strong>حل کامل صفحه</strong><small>ارسال برای Vision</small></button><div class="v32-result" id="v32HomeworkResult"></div></div></div>
+<div class="v32-panel" id="v32Camera"><div class="v32-card"><div class="v32-head"><strong>📷 JARVIS Vision</strong><button class="v32-close" data-v32-close="v32Camera">×</button></div><div class="v32-camera"><video id="v32Video" autoplay playsinline muted></video></div><div class="v32-camera-controls"><button class="v32-action" id="v32Capture">📸 عکس بگیر</button><button class="v32-action" id="v32CameraAsk">👁️ بخون و توضیح بده</button></div><canvas id="v32Canvas" hidden></canvas><div class="v32-result" id="v32VisionResult"></div></div></div>
+<div class="v32-panel" id="v32Search"><div class="v32-card"><div class="v32-head"><strong>🌐 Web / Deep Search</strong><button class="v32-close" data-v32-close="v32Search">×</button></div><input class="v32-field" id="v32SearchInput" placeholder="چی رو جستجو کنم؟"><div class="v32-grid"><button class="v32-action" id="v32GoogleSearch"><strong>Google Search</strong><small>جستجوی سریع</small></button><button class="v32-action" id="v32DeepSearch"><strong>Deep Search</strong><small>چند منبع + تحلیل</small></button></div><div class="v32-result" id="v32SearchResult">نتیجه جستجو بعد از اجرا اینجا قرار می‌گیرد.</div></div></div>
+<div class="v32-toast" id="v32Toast"></div>
+<div class="app">
+<header><button class="menu-btn" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="brand">JARVIS / RADMAN</div><button class="menu-btn command-btn" id="commandBtn" aria-label="مرکز فرمان"><svg viewBox="0 0 24 24"><path d="M8 3v3M16 3v3M8 18v3M16 18v3M3 8h3M18 8h3M3 16h3M18 16h3"/><rect x="7" y="7" width="10" height="10" rx="3"/></svg></button></header>
+<main class="main" id="main"><div class="orb"></div><div class="status"><div class="state" id="state">READY</div><div class="title" id="title">سلام</div></div><div class="visualizer" id="visualizer"></div><div class="quick"><button class="chip" data-q="تایمر 1 دقیقه">تایمر ۱ دقیقه</button><button class="chip" data-q="حافظه را نشان بده">حافظه</button><button class="chip" data-q="دوربین را باز کن">دوربین</button><button class="chip" data-q="ساعت چند است">ساعت</button><button class="chip" data-q="یک تصویر بساز">تصویر</button></div></main>
+<section class="chat" id="chat"><div class="chat-inner" id="chatInner"></div></section>
+<div id="attachments" class="attachments"></div><div class="composer"><button class="plus-btn" id="plusBtn" aria-label="Attach"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button><button class="mic" id="micBtn" aria-label="Voice"><svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="12" rx="4"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/></svg></button><input id="input" autocomplete="off" placeholder="پیام خود را بنویسید..."/><button class="send" id="sendBtn" aria-label="Send"><svg viewBox="0 0 24 24"><path d="m4 4 16 8-16 8 3-8-3-8Z"/><path d="M7 12h13"/></svg></button><button class="voice-orb" id="voiceModeBtn" aria-label="Voice assistant"><span></span><i></i><b></b><em></em></button></div><input id="fileInput" type="file" multiple hidden>
+<div class="command-sheet" id="commandSheet"><div class="command-card"><div class="command-head"><strong>مرکز فرمان</strong><button class="close" id="closeCommand">×</button></div><button class="command-action" data-cmd="voice"><span>دستیار صوتی</span><small>فعال کردن مکالمه صوتی</small></button><button class="command-action" data-cmd="image"><span>ساخت تصویر</span><small>تبدیل توضیحت به تصویر با هوش مصنوعی</small></button><button class="command-action" data-cmd="camera"><span>دوربین</span><small>باز کردن دوربین دستگاه</small></button><button class="command-action" data-cmd="smart"><span>خانه هوشمند</span><small>کنترل چراغ‌ها و دستگاه‌های Smart Partner</small></button><button class="command-action" data-cmd="gmail"><span>Gmail</span><small>اتصال یا مدیریت Gmail</small></button><button class="command-action" data-cmd="new"><span>چت جدید</span><small>شروع یک گفتگوی تازه</small></button><div class="response-mode-wrap"><div class="response-mode-label">حالت جواب دادن</div><div class="response-modes"><button class="response-mode" data-mode="friendly"><strong>صمیمی</strong><small>خودمونی و راحت</small></button><button class="response-mode" data-mode="expert"><strong>متخصص</strong><small>دقیق و حرفه‌ای</small></button><button class="response-mode" data-mode="concise"><strong>کوتاه</strong><small>فقط اصل جواب</small></button><button class="response-mode" data-mode="teacher"><strong>معلم</strong><small>مرحله‌به‌مرحله</small></button><button class="response-mode" data-mode="creative"><strong>خلاق</strong><small>ایده‌های متفاوت</small></button><button class="response-mode" data-mode="direct"><strong>مستقیم</strong><small>بدون حاشیه</small></button></div><div class="mode-current" id="modeCurrent">حالت فعلی: صمیمی</div></div></div></div><div class="toast" id="toast"></div>
+<div class="panel" id="accountPanel"><button class="close" id="closeAccountPanel">×</button><h2>اکانت JARVIS</h2><div class="row"><div><label>نام</label><small>برای ذخیره پروفایل روی همین دستگاه</small></div><input class="field" id="accountName" placeholder="نام شما"></div><div class="row"><div><label>ایمیل</label><small id="accountEmailText">وارد نشده</small></div><button class="danger" id="googleLoginBtn">ورود با Google</button></div><div class="row"><div><label>ذخیره اکانت</label><small>اطلاعات پروفایل روی همین دستگاه ذخیره می‌شود.</small></div><button class="danger" id="saveAccountBtn">ذخیره</button></div><div class="row"><div><label>وضعیت</label><small id="accountStatus">مهمان</small></div><button class="danger" id="logoutAccountBtn">خروج</button></div></div>
+<div class="panel" id="smartPanel"><button class="close" id="closeSmartPanel">×</button><h2>خانه هوشمند</h2><div class="row"><div><label>Smart Partner</label><small id="smartStatus">اتصال محلی آماده است</small></div><span class="badge" id="smartBadge">OFF</span></div><div class="row"><div><label>آدرس Bridge / API</label><small>برای کنترل واقعی چراغ‌ها و دستگاه‌ها باید API یا Bridge رسمی سیستم وارد شود.</small></div><input class="field" id="smartEndpoint" placeholder="https://..." autocapitalize="none" autocomplete="off"></div><div class="row"><div><label>توکن دسترسی</label><small>فقط روی همین دستگاه ذخیره می‌شود.</small></div><input class="field" id="smartToken" type="password" placeholder="Token" autocomplete="off"></div><div class="row"><div><label>ذخیره اتصال</label><small>بعداً می‌توانی بگویی «چراغ پذیرایی را روشن کن».</small></div><button class="danger" id="saveSmart">ذخیره و تست</button></div><div class="row"><div><label>دستگاه‌های نمونه</label><small>برای تست فرمان طبیعی</small></div><div class="app-shortcuts"><button data-smart="چراغ پذیرایی">پذیرایی</button><button data-smart="چراغ اتاق من">اتاق</button><button data-smart="چراغ حیاط">حیاط</button></div></div></div><div class="panel" id="gmailPanel"><button class="close" id="closeGmailPanel">×</button><h2>اتصال Gmail</h2><div class="row"><div><label>وضعیت اتصال</label><small id="gmailStatusText">متصل نیست</small></div><span class="badge" id="gmailStatusBadge">OFF</span></div><div class="row"><div><label>Google OAuth Client ID</label><small>این Client ID است، نه API Key. فقط یک‌بار ذخیره می‌شود.</small></div><input class="field" id="gmailClientIdInput" placeholder="...apps.googleusercontent.com" autocapitalize="none" autocomplete="off" spellcheck="false"></div><div class="row"><div><label>اتصال</label><small id="gmailHelp">JARVIS باید از HTTPS اجرا شود و دامنه‌اش در Google Cloud مجاز باشد.</small></div><button class="danger" id="gmailConnectBtn">اتصال</button></div><div class="row"><div><label>دسترسی‌ها</label><small>خواندن، مدیریت پیام و ارسال ایمیل</small></div><button class="danger" id="gmailDisconnectBtn">قطع اتصال</button></div></div><div class="panel" id="panel"><button class="close" id="closePanel">×</button><h2>تنظیمات JARVIS</h2><div class="row"><div><label>هوش مصنوعی</label><small>Backend یا Groq Direct برای پاسخ‌دهی استفاده می‌شود.</small></div><span class="badge" id="apiConfigStatus">فعال</span></div>
+<div class="row"><div><label>Groq API Key</label><small>اختیاری؛ فقط روی همین دستگاه ذخیره می‌شود و برای اجرای مستقیم AI در فایل HTML استفاده می‌شود.</small></div><input class="field" id="groqApiKey" type="password" placeholder="gsk_..." autocomplete="off"></div>
+<div class="row"><div><label>ذخیره کلید هوش مصنوعی</label><small>اگر Backend نداری، این کلید مسیر مستقیم Groq را فعال می‌کند.</small></div><button class="danger" id="saveGroqKey">ذخیره</button></div><div class="row"><div><label>کلید ساخت تصویر</label><small>OpenAI API Key فقط روی همین دستگاه ذخیره می‌شود.</small></div><input class="field" id="openaiImageKey" type="password" placeholder="sk-..." autocomplete="off"></div><div class="row"><div><label>ذخیره کلید تصویر</label><small>برای فعال شدن ساخت تصویر در چت</small></div><button class="danger" id="saveImageKey">ذخیره</button></div><div class="row"><div><label>حافظه</label><small>ذخیره‌شده فقط روی همین دستگاه</small></div><button class="danger" id="clearMemory">پاک کردن</button></div><div class="row"><div><label>وضعیت</label><small id="statusInfo">Web App — بدون Shortcuts</small></div><button class="danger" id="cameraBtn">دوربین</button></div><div id="memoryView" class="memory-list"></div></div>
+</div>
+<script>
+window.addEventListener('error',e=>{console.error('JARVIS runtime error:',e.error||e.message)});
+window.addEventListener('unhandledrejection',e=>{console.error('JARVIS promise error:',e.reason)});
+/* V13 STABILITY + CHAT MANAGER */
+const CHAT_STORE='jarvis-v13-chats';
+function safeJSON(raw,fallback){try{return raw?JSON.parse(raw):fallback}catch(e){console.warn('JARVIS storage reset',e);return fallback}}
+let chats=safeJSON(localStorage.getItem(CHAT_STORE),[]);
+if(!Array.isArray(chats))chats=[];
+let activeChatId=localStorage.getItem('jarvis-v13-active')||'';
+function uid(){return 'c_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7)}
+function saveChats(){localStorage.setItem(CHAT_STORE,JSON.stringify(chats));if(activeChatId)localStorage.setItem('jarvis-v13-active',activeChatId);renderChatList()}
+function ensureChat(){if(!chats.length){const id=uid();chats=[{id,title:'چت جدید',messages:[],created:Date.now(),updated:Date.now()}];activeChatId=id;saveChats()}else if(!chats.find(c=>c.id===activeChatId)){activeChatId=chats[0].id;saveChats()}}
+function currentChat(){ensureChat();return chats.find(c=>c.id===activeChatId)}
+function cancelActiveRequest(){if(activeController){try{activeController.abort()}catch(e){}activeController=null}activeBubble=null;setSendBusy(false)}
+function renderChatList(){const el=document.getElementById('chatList');if(!el)return;el.innerHTML='';[...chats].sort((a,b)=>b.updated-a.updated).forEach(c=>{const row=document.createElement('div');row.className='chat-row'+(c.id===activeChatId?' active':'');row.innerHTML='<span class="chat-name"></span><button class="icon-btn" title="حذف">×</button>';row.querySelector('.chat-name').textContent=c.title||'چت جدید';row.querySelector('.chat-name').onclick=()=>loadChat(c.id);row.querySelector('button').onclick=e=>{e.stopPropagation();deleteChat(c.id)};el.appendChild(row)})}
+function openSidebar(){document.getElementById('sidebar')?.classList.add('open');document.getElementById('sideBackdrop')?.classList.add('show');renderChatList()}
+function closeSidebar(){document.getElementById('sidebar')?.classList.remove('open');document.getElementById('sideBackdrop')?.classList.remove('show')}
+function newChat(){cancelActiveRequest();const id=uid();chats.unshift({id,title:'چت جدید',messages:[],created:Date.now(),updated:Date.now()});activeChatId=id;history=[];chatInner.innerHTML='';chat.classList.remove('show');document.querySelector('.quick')?.classList.remove('quick-hidden');input.value='';selectedFiles.length=0;attachments.innerHTML='';setState('READY','سلام');saveChats();closeSidebar()}
+function loadChat(id){if(id===activeChatId)return;const c=chats.find(x=>x.id===id);if(!c)return;cancelActiveRequest();activeChatId=id;history=Array.isArray(c.messages)?c.messages.slice():[];chatInner.innerHTML='';input.value='';selectedFiles.length=0;attachments.innerHTML='';if(history.length){showChat();history.forEach(m=>addBubble(m.content,m.role==='user'?'user':'assistant'))}else chat.classList.remove('show');localStorage.setItem('jarvis-v13-active',activeChatId);renderChatList();closeSidebar();setState('READY',c.title||'سلام')}
+let pendingDeleteId=null;function deleteChat(id){if(!chats.some(x=>x.id===id))return;pendingDeleteId=id;document.getElementById('deleteConfirm')?.classList.add('open')}function finishDeleteChat(id){const idx=chats.findIndex(x=>x.id===id);if(idx<0)return;const wasActive=activeChatId===id;chats.splice(idx,1);if(wasActive){cancelActiveRequest();if(chats.length){chats.sort((a,b)=>b.updated-a.updated);activeChatId=chats[0].id;history=Array.isArray(chats[0].messages)?chats[0].messages.slice():[];chatInner.innerHTML='';if(history.length){showChat();history.forEach(m=>addBubble(m.content,m.role==='user'?'user':'assistant'))}else chat.classList.remove('show')}else{activeChatId='';history=[];chatInner.innerHTML='';chat.classList.remove('show');ensureChat()}}saveChats()}
+function updateChatTitle(text){const c=currentChat();if(c && (c.title==='چت جدید'||!c.title)){c.title=text.slice(0,34);c.updated=Date.now();saveChats()}}
+function persistCurrent(){const c=currentChat();if(!c)return;c.messages=history.slice(-30);c.updated=Date.now();saveChats()}
+
+const $=s=>document.querySelector(s); const state=$('#state'),title=$('#title'),input=$('#input'),chat=$('#chat'),chatInner=$('#chatInner'),visualizer=$('#visualizer'),toast=$('#toast');
+for(let i=0;i<34;i++){const b=document.createElement('i');b.className='bar';b.style.setProperty('--h',(18+Math.random()*64)+'px');visualizer.appendChild(b)}
+const cfg=safeJSON(localStorage.getItem('jarvis-v13-config'),{});
+let history=[]; let listening=false; let recognition=null; let timerEnd=0; let timerId=null; let voiceMuted=false; let activeAudio=null; let activeAudioUrl=null;
+const memories=()=>{const m=safeJSON(localStorage.getItem('jarvis-v13-memory'),[]);return Array.isArray(m)?m:[]};
+function setState(s,t){state.textContent=s;title.textContent=t}
+async function stopVoiceAudio(){try{if(activeAudio){activeAudio.pause();activeAudio.currentTime=0}}catch(e){}if(activeAudioUrl){URL.revokeObjectURL(activeAudioUrl);activeAudioUrl=null}activeAudio=null}
+function applyVoiceStyle(text){
+ const style=localStorage.getItem('JARVIS_VOICE_STYLE')||'natural';
+ const tags={natural:'',calm:'[calm]',energetic:'[excited]',cinematic:'[dramatic]',whisper:'[whisper]'};
+ const tag=tags[style]||''; return tag ? tag+' '+text : text;
+}
+async function playTTS(text){
+ text=applyVoiceStyle(String(text||'').trim()); if(!text)return;
+ if(!JARVIS_API.base){toastMsg('API متصل نیست');return}
+ const player=document.getElementById('ttsPlayer'), progress=document.getElementById('ttsProgress'), now=document.getElementById('ttsNow');
+ await stopVoiceAudio();
+ player.classList.add('open'); player.classList.remove('max'); player.setAttribute('aria-hidden','false'); now.textContent='در حال ساخت صدا...'; progress.style.width='0%';
+ try{
+   const r=await fetch(JARVIS_API.url('/tts'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text,model:localStorage.getItem('JARVIS_FISH_MODEL')||'s2.1-pro',reference_id:localStorage.getItem('JARVIS_FISH_VOICE')||'711cf3ed00ab441a8f54a45058047b7a'})});
+   if(!r.ok)throw Error('Fish '+r.status);
+   const blob=await r.blob(); activeAudioUrl=URL.createObjectURL(blob); activeAudio=new Audio(activeAudioUrl); now.textContent='در حال پخش پاسخ';
+   activeAudio.ontimeupdate=()=>{if(activeAudio?.duration)progress.style.width=(activeAudio.currentTime/activeAudio.duration*100)+'%'};
+   activeAudio.onended=()=>{progress.style.width='100%';setTimeout(closeTTS,250)};
+   await activeAudio.play();
+ }catch(e){console.warn(e);now.textContent='پخش صدا ناموفق بود';toastMsg('پخش صدا انجام نشد')}
+}
+function closeTTS(){const p=document.getElementById('ttsPlayer');p?.classList.remove('open','max');p?.setAttribute('aria-hidden','true');stopVoiceAudio();document.getElementById('ttsProgress')?.style.setProperty('width','0%')}
+document.getElementById('ttsClose')?.addEventListener('click',closeTTS);
+document.getElementById('ttsMax')?.addEventListener('click',()=>document.getElementById('ttsPlayer')?.classList.toggle('max'));
+document.getElementById('ttsPlay')?.addEventListener('click',()=>{if(activeAudio){if(activeAudio.paused)activeAudio.play();else activeAudio.pause()}});
+async function fishSpeak(text){
+  if(voiceMuted||!text)return false;
+  const clean=String(text).replace(/```[\s\S]*?```/g,'کد حذف شد').replace(/[*_#`]/g,'').slice(0,3500);
+  // Try existing backend first.
+  try{
+    if(location.protocol!=='file:' && JARVIS_API.base){
+      stopVoiceAudio();setState('SPEAKING','دارم صحبت می‌کنم...');
+      const r=await fetch(JARVIS_API.url('/tts'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:clean,model:localStorage.getItem('JARVIS_FISH_MODEL')||'s2.1-pro',reference_id:localStorage.getItem('JARVIS_FISH_VOICE')||JARVIS_PRIVATE_CONFIG.FISH_REFERENCE_ID})});
+      if(r.ok){const blob=await r.blob();activeAudioUrl=URL.createObjectURL(blob);activeAudio=new Audio(activeAudioUrl);activeAudio.onended=()=>{if(activeAudioUrl)URL.revokeObjectURL(activeAudioUrl);activeAudioUrl=null;activeAudio=null;setState('READY','آماده‌ام')};await activeAudio.play();return true}
+    }
+  }catch(e){console.warn('Backend TTS unavailable',e)}
+  // Direct Fish Audio, if a key was explicitly supplied.
+  const fishKey=JARVIS_PRIVATE_CONFIG.FISH_API_KEY||localStorage.getItem('JARVIS_FISH_KEY')||'';
+  if(fishKey){
+    try{
+      stopVoiceAudio();setState('SPEAKING','دارم صحبت می‌کنم...');
+      const r=await fetch('https://api.fish.audio/v1/tts',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+fishKey},body:JSON.stringify({text:clean,model:localStorage.getItem('JARVIS_FISH_MODEL')||JARVIS_PRIVATE_CONFIG.FISH_AUDIO_MODEL,reference_id:localStorage.getItem('JARVIS_FISH_VOICE')||JARVIS_PRIVATE_CONFIG.FISH_REFERENCE_ID,format:'mp3'})});
+      if(r.ok){const blob=await r.blob();activeAudioUrl=URL.createObjectURL(blob);activeAudio=new Audio(activeAudioUrl);activeAudio.onended=()=>{if(activeAudioUrl)URL.revokeObjectURL(activeAudioUrl);activeAudioUrl=null;activeAudio=null;setState('READY','آماده‌ام')};await activeAudio.play();return true}
+    }catch(e){console.warn('Direct Fish unavailable',e)}
+  }
+  // Always leave the user with a working voice output when browser TTS exists.
+  if('speechSynthesis' in window){
+    try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(clean);u.lang='fa-IR';u.rate=.96;u.onstart=()=>setState('SPEAKING','دارم صحبت می‌کنم...');u.onend=()=>setState('READY','آماده‌ام');speechSynthesis.speak(u);return true}catch(e){console.warn(e)}
+  }
+  return false;
+}
+
+function toastMsg(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2300)}
+function addBubble(text,who){const d=document.createElement('div');d.className='bubble '+who;d.textContent=text;chatInner.appendChild(d);requestAnimationFrame(()=>chat.scrollTo({top:chat.scrollHeight,behavior:'smooth'}));return d}
+function showChat(){chat.classList.add('show')}
+function addTypingBubble(){const d=document.createElement('div');d.className='bubble assistant processing';d.innerHTML='<span class="typing-cursor"></span>';chatInner.appendChild(d);requestAnimationFrame(()=>chat.scrollTo({top:chat.scrollHeight,behavior:'smooth'}));return d}
+function addTools(text,prompt){
+ const wrap=document.createElement('div');wrap.className='message-tools';
+ const mk=(label,svg,fn)=>{const b=document.createElement('button');b.type='button';b.title=label;b.innerHTML=svg;b.onclick=fn;wrap.appendChild(b)};
+ mk('پخش صدا','<svg viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9.5a4 4 0 0 1 0 5M19.5 7a8 8 0 0 1 0 10"/></svg>',()=>playTTS(text));
+ mk('کپی','<svg viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>',()=>navigator.clipboard?.writeText(text).then(()=>toastMsg('کپی شد')));
+ mk('ادامه','<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7Z"/></svg>',()=>sendText((prompt||'')+'\n\nاز همین جایی که پاسخ قبلی متوقف شد ادامه بده و تکرار نکن.'));
+ mk('از اول','<svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0 1 4"/><path d="M20 5v6h-6"/></svg>',()=>sendText(prompt||''));
+ return wrap;
+}
+function attachTools(bubble,prompt){if(!bubble?.parentNode)return;const w=document.createElement('div');w.className='bubble-wrap';bubble.parentNode.replaceChild(w,bubble);w.appendChild(bubble);w.appendChild(addTools(bubble.textContent||'',prompt));return w}
+async function typeIntoBubble(el,text,speed=16){el.textContent='';for(let i=0;i<text.length;i++){el.textContent+=text[i];if(i%2===0)chat.scrollTo({top:chat.scrollHeight,behavior:'smooth'});await new Promise(r=>setTimeout(r,speed));}return el}
+
+function remember(text){const a=memories();a.push({text,at:new Date().toLocaleString('fa-IR')});localStorage.setItem('jarvis-v13-memory',JSON.stringify(a.slice(-100)));renderMemory()}
+function showMemorySaved(text){const d=document.createElement('div');d.className='memory-confirm';d.innerHTML='<div class="memory-top"><span class="memory-mark"></span><strong>MEMORIZED</strong></div><small>'+escapeHtml(text)+'</small>';chatInner.appendChild(d);requestAnimationFrame(()=>chat.scrollTo({top:chat.scrollHeight,behavior:'smooth'}));setTimeout(()=>{d.style.opacity='.72'},2200)}
+function renderMemory(){const a=memories();$('#memoryView').innerHTML=a.length?a.slice().reverse().map(x=>`<div>• ${escapeHtml(x.text)} <small>(${escapeHtml(x.at)})</small></div>`).join(''):'<div class="empty">حافظه خالی است.</div>'}
+function escapeHtml(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function startTimer(min){min=Math.max(1,Number(min)||1);timerEnd=Date.now()+min*60000;clearInterval(timerId);timerId=setInterval(updateTimer,250);updateTimer();toastMsg(`تایمر ${min} دقیقه شروع شد`);}
+function updateTimer(){if(!timerEnd)return;let left=Math.max(0,timerEnd-Date.now());if(left===0){clearInterval(timerId);timerId=null;timerEnd=0;setState('READY','تایمر تمام شد');navigator.vibrate?.([180,100,180]);toastMsg('تایمر تمام شد');return}let s=Math.ceil(left/1000),m=Math.floor(s/60),sec=s%60;setState('TIMER',`${m}:${String(sec).padStart(2,'0')}`)}
+let alarmTimers=[];function setAlarmAt(timeText,label='JARVIS'){const m=timeText.match(/(\d{1,2})[:٫.](\d{2})/);if(!m)return false;let h=Number(m[1]),min=Number(m[2]);if(h>23||min>59)return false;const now=new Date(),d=new Date(now);d.setHours(h,min,0,0);if(d<=now)d.setDate(d.getDate()+1);const ms=d-now;requestNotification();const id=setTimeout(()=>{try{if('Notification' in window&&Notification.permission==='granted')new Notification('JARVIS',{body:label});else toastMsg('⏰ '+label)}catch(e){toastMsg('⏰ '+label)}},ms);alarmTimers.push(id);toastMsg('آلارم برای '+d.toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'})+' تنظیم شد');return true}
+function requestNotification(){if(!('Notification' in window)){toastMsg('اعلان در این مرورگر پشتیبانی نمی‌شود');return}Notification.requestPermission().then(p=>toastMsg(p==='granted'?'اعلان‌ها فعال شدند':'اجازه اعلان داده نشد')).catch(()=>toastMsg('فعال‌سازی اعلان ناموفق بود'))}
+function localCommand(text){const t=text.trim().toLowerCase();
+ if(/فراموش کن|فراموشش کن|یادت نباشه|از حافظه پاک کن/.test(t)){const all=memories();const x=text.replace(/فراموش کن|فراموشش کن|یادت نباشه|از حافظه پاک کن/gi,'').replace(/^(همه چیز|همه|کل حافظه)$/, '').trim();if(!x){localStorage.removeItem('jarvis-v13-memory');renderMemory();return all.length?'همه حافظه پاک شد و فراموش شد.':'حافظه از قبل خالی بود.'}const kept=all.filter(m=>!String(m.text).toLowerCase().includes(x.toLowerCase()));const removed=all.length-kept.length;localStorage.setItem('jarvis-v13-memory',JSON.stringify(kept));renderMemory();return removed?'فراموش شد و از حافظه پاکش کردم.':'چنین چیزی در حافظه پیدا نکردم.'}
+ if(/آلارم|alarm/.test(t)){const tm=(text.match(/(\d{1,2})[:٫.](\d{2})/)||[])[0];if(tm&&setAlarmAt(tm,text.replace(tm,'').trim()||'آلارم'))return 'آلارم تنظیم شد.';return 'ساعت آلارم را مثل 07:30 بگو.'}
+ if(/تایمر|timer/.test(t)){const n=(t.match(/(\d+(?:\.\d+)?)/)||[])[1]||'1';startTimer(n);return 'تایمر '+n+' دقیقه شروع شد.'}
+ if(/حافظه را نشان|حافظه چی|memory/.test(t)){const a=memories();showChat();return a.length?'حافظه‌های ذخیره‌شده:\n'+a.map((x,i)=>`${i+1}. ${x.text}`).join('\n'):'حافظه‌ای ذخیره نشده.'}
+ if(/یادت بمونه|به خاطر بسپار|ذخیره کن/.test(t)){let x=text.replace(/یادت بمونه|به خاطر بسپار|ذخیره کن/gi,'').trim();if(x){remember(x);showMemorySaved(x);return 'ذخیره شد؛ یادم می‌مونه.'}}
+ if(/اعلان|نوتیفیکیشن|notification/.test(t)){requestNotification();return 'درخواست اعلان را فعال کردم؛ اگر اجازه بدهی، اعلان‌های زمان‌بندی‌شده در همین JARVIS کار می‌کنند.'}
+ if(/ساعت چند|time/.test(t)){return 'الان '+new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'})+' است.'}
+ if(/دوربین|camera/.test(t)){openCamera();return 'دوربین را باز کردم.'}
+  if(/چراغ|لامپ|پریز|کولر|تهویه|خانه هوشمند|smart partner/i.test(t)){smartCommand(t);return 'فرمان خانه هوشمند را ارسال می‌کنم.'}
+ if(/(یوتیوب|youtube)/.test(t)){window.open('https://www.youtube.com/','_blank');return 'یوتیوب را باز کردم.'}
+ if(/(واتساپ|whatsapp)/.test(t)){window.open('https://wa.me/','_blank');return 'واتساپ را باز کردم.'}
+ if(/(اینستاگرام|instagram)/.test(t)){window.open('https://www.instagram.com/','_blank');return 'اینستاگرام را باز کردم.'}
+ if(/(جیمیل|gmail)/.test(t)){window.open('https://mail.google.com/','_blank');return 'Gmail را باز کردم.'}
+ if(/(اسنپ.?فود|snapp.?food)/.test(t)){window.open('https://snappfood.ir/','_blank');return 'اسنپ‌فود را باز کردم.'}
+ if(/(سافاری|مرورگر|browser)/.test(t)){window.open('https://www.google.com/','_blank');return 'مرورگر را باز کردم.'}
+ if(/(موسیقی|music|اپل موزیک|apple music)/.test(t)){window.open('https://music.apple.com/','_blank');return 'Apple Music را باز کردم.'}
+ if(/(تلگرام|telegram)/.test(t)){window.open('https://web.telegram.org/','_blank');return 'تلگرام را باز کردم.'}
+ return null}
+async function askAI(text,onChunk,signal=null){
+  setState('THINKING','دارم فکر می‌کنم...');
+  const userName=(localStorage.getItem('JARVIS_USER_NAME')||'').trim();
+  const modeInstruction=RESPONSE_MODES[responseMode]?.prompt||RESPONSE_MODES.friendly.prompt;
+  const ctx=assistantContext();
+  const sys=`تو JARVIS دستیار هوشمند شخصی ${userName||'کاربر'} هستی. فارسی و طبیعی جواب بده. حالت پاسخ فعلی: ${RESPONSE_MODES[responseMode]?.name||'صمیمی'}. ${modeInstruction} فقط دقیقاً به درخواست کاربر پاسخ بده و کار اضافه یا حدس بی‌دلیل نکن. کوتاه و مفید باش. حافظه‌های کاربر: ${JSON.stringify(memories())}. زمینه لحظه‌ای: ${JSON.stringify(ctx)}.`;
+  const msgs=[{role:'system',content:sys},...history.slice(-12),{role:'user',content:text}];
+  const body={model:JARVIS_PRIVATE_CONFIG.GROQ_MODEL,messages:msgs,temperature:.4,max_tokens:900,stream:false,...((V32.mode==='deepsearch'||V32.mode==='web')?{tools:[{type:'browser_search'}]}:{})};
+  let lastErr=null;
+  // 1) Existing backend if the app is hosted.
+  if(location.protocol!=='file:' && JARVIS_API.base){
+    try{
+      const r=await fetch(JARVIS_API.url('/chat'),{method:'POST',headers:{'Content-Type':'application/json'},signal,body:JSON.stringify(body)});
+      if(r.ok){const j=await r.json();const a=j.choices?.[0]?.message?.content||j.answer||j.text||'';if(a){onChunk?.(a);return a;}}
+      else {lastErr=Object.assign(new Error('Backend '+r.status),{status:r.status,detail:await r.text().catch(()=> '')})}
+    }catch(e){if(e?.name==='AbortError')throw e;lastErr=e}
+  }
+  // 2) Direct Groq for a personal single-device build.
+  if(JARVIS_DIRECT.hasKey()){
+    try{
+      const r=await fetch(JARVIS_DIRECT.endpoint,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+JARVIS_DIRECT.key},signal,body:JSON.stringify(body)});
+      const txt=await r.text();
+      if(!r.ok){const e=new Error('Groq '+r.status);e.status=r.status;e.detail=txt;throw e}
+      const j=JSON.parse(txt);const a=j.choices?.[0]?.message?.content||'';
+      if(!a)throw new Error('EMPTY_GROQ_RESPONSE');
+      onChunk?.(a);return a;
+    }catch(e){if(e?.name==='AbortError')throw e;lastErr=e}
+  }
+  const local=localCommand(text);
+  if(local){onChunk?.(local,true);return local}
+  const e=lastErr||new Error('NO_AI_KEY');
+  if(!e.status)e.status=0;
+  throw e;
+}
+
+let activeController=null; let activePrompt=''; let activeBubble=null;
+function normalizeUserText(value){
+  return String(value??'')
+    .replace(/\u200c/g,' ')
+    .replace(/[\u0640]/g,'')
+    .replace(/[\u0660-\u0669]/g,d=>String(d.charCodeAt(0)-0x0660))
+    .replace(/[\u06F0-\u06F9]/g,d=>String(d.charCodeAt(0)-0x06F0))
+    .replace(/[\u066B]/g,'.')
+    .replace(/[\u061F]/g,'?')
+    .replace(/[\u2018\u2019]/g,"'")
+    .replace(/[\u201C\u201D]/g,'"')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+function assistantContext(){
+  const now=new Date();
+  return {time:now.toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'}),date:now.toLocaleDateString('fa-IR'),language:document.documentElement.lang||'fa',online:navigator.onLine,browser:navigator.userAgent.includes('Safari')?'Safari':'Browser'};
+}
+function setSendBusy(busy){const b=$('#sendBtn');if(!b)return;b.classList.toggle('stop',busy);b.setAttribute('aria-label',busy?'Stop':'Send')}
+function stopAnswer(){activeController?.abort()}
+async function sendText(text,opts={}){
+  text=normalizeUserText(text);if(!text)return;
+  if(/^(?:یه |یک |لطفاً |لطفا )?(?:عکس|تصویر)(?:ی)?(?: بساز| درست کن| ایجاد کن| تولید کن|بکش)/i.test(text)||/(عکس|تصویر) (بساز|درست کن|ایجاد کن|تولید کن)/i.test(text)){imagePrompt.value=text.replace(/^(?:یه |یک |لطفاً |لطفا )?(?:عکس|تصویر)(?:ی)?\s*/i,'').replace(/^(?:بساز|درست کن|ایجاد کن|تولید کن)\s*/i,'').trim()||text;openImageStudio();return;}
+  const isRestart=!!opts.restart;
+  if(activeController && !isRestart){toastMsg('اول پاسخ فعلی را متوقف کن');return}
+  const c=currentChat();
+  showChat();
+  if(!isRestart){addBubble(text,'user');input.value='';activePrompt=text;document.querySelector('.quick')?.classList.add('quick-hidden')}else{history=history.filter((m,i)=>!(m.role==='assistant'&&i===history.length-1));chatInner.lastElementChild?.remove();input.value=''}
+  const attachedNames=selectedFiles.map(f=>f.name);
+  const upload=$('#uploading');
+  if(selectedFiles.some(f=>f.type.startsWith('image/')))upload.classList.add('show');
+  if(attachedNames.length && !isRestart)addBubble('فایل‌ها: '+attachedNames.join('، '),'user');
+  const local=localCommand(text);if(upload)upload.classList.remove('show');
+  if(local){history.push({role:'user',content:text},{role:'assistant',content:local});persistCurrent();const b=addTypingBubble();await typeIntoBubble(b,local,22);selectedFiles.length=0;attachments.innerHTML='';return}
+  setState('THINKING','در حال پردازش...');
+  const bubble=addTypingBubble();let gotText=false;activeBubble=bubble;activePrompt=text;activeController=new AbortController();setSendBusy(true);
+  try{
+    const attachmentContext=await buildAttachmentContext();
+    const promptText=(attachedNames.length?text+'\n\nفایل‌های پیوست‌شده: '+attachedNames.join(', '):text)+(attachmentContext?'\n\nمحتوای قابل‌خواندن فایل‌ها:\n'+attachmentContext:'');
+    const ans=await askAI(promptText,(full)=>{gotText=true;bubble.textContent=full;chat.scrollTo({top:chat.scrollHeight,behavior:'smooth'});setState('SPEAKING','دارم جواب می‌دم...')},activeController.signal);
+    if(!gotText)await typeIntoBubble(bubble,ans,16);
+    history.push({role:'user',content:text},{role:'assistant',content:ans});history=history.slice(-30);
+    updateChatTitle(text);persistCurrent();selectedFiles.length=0;attachments.innerHTML='';attachTools(bubble,text);
+    activeController=null;activeBubble=null;setSendBusy(false);
+    fishSpeak(ans).then(ok=>{if(!ok)setState('READY',currentChat()?.title&&currentChat().title!=='چت جدید'?currentChat().title:'آماده‌ام')});
+  }catch(e){
+    const stopped=e?.name==='AbortError';
+    const partial=(bubble.textContent||'').trim();
+    activeController=null;activeBubble=null;setSendBusy(false);
+    if(stopped){
+      if(partial){attachTools(bubble,text);history.push({role:'user',content:text},{role:'assistant',content:partial});history=history.slice(-30);persistCurrent();}
+      else bubble.remove();
+      setState('READY','پاسخ متوقف شد');return;
+    }
+    bubble.remove();let msg='نتونستم به هوش مصنوعی وصل بشم.';
+    if(e?.status===401)msg='کلید Groq معتبر نیست یا منقضی شده.';else if(e?.status===429)msg='محدودیت درخواست Groq خورده؛ چند لحظه صبر کن و دوباره بفرست.';else if(e?.status===400)msg='درخواست Groq رد شد؛ تنظیمات مدل را بررسی کن.';else if(location.protocol==='file:')msg='این فایل مستقیم از Files باز شده؛ برای API و میکروفون، JARVIS را روی HTTPS/لوکال‌سرور اجرا کن.';else if(e?.message==='Failed to fetch')msg='اتصال به Groq از این مرورگر برقرار نشد.';
+    addBubble(msg,'assistant');setState('READY','آماده‌ام');console.error(e);
+  }
+}
+function continueAnswer(prompt,partial){if(activeController)return;sendText(prompt+'\n\nاز همین جایی که پاسخ قبلی متوقف شد ادامه بده و تکرار نکن.',{continuation:true})}
+$('#sendBtn').onclick=()=>{if(activeController){stopAnswer();return}sendText(input.value)};input.onkeydown=e=>{if(e.key==='Enter')sendText(input.value)};document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>sendText(b.dataset.q));
+$('#settingsSideBtn').onclick=()=>{closeSidebar();$('#panel').classList.add('open');renderMemory()};function updateApiConfigStatus(){
+  const el=$('#apiConfigStatus'); if(!el)return;
+  el.textContent=JARVIS_DIRECT.hasKey()?'Groq Direct':'Backend / Direct';
+}
+updateApiConfigStatus();
+if($('#groqApiKey') && JARVIS_PRIVATE_CONFIG.GROQ_API_KEY) $('#groqApiKey').value=JARVIS_PRIVATE_CONFIG.GROQ_API_KEY;
+$('#groqApiKey')?.addEventListener('focus',e=>{e.target.value=JARVIS_DIRECT.key||''});
+$('#saveGroqKey')?.addEventListener('click',()=>{
+  JARVIS_DIRECT.setKey($('#groqApiKey')?.value||'');
+  updateApiConfigStatus();
+  toastMsg(JARVIS_DIRECT.hasKey()?'کلید Groq ذخیره شد':'کلید Groq پاک شد');
+});
+$('#closePanel').onclick=()=>$('#panel').classList.remove('open');$('#clearMemory').onclick=()=>{localStorage.removeItem('jarvis-v13-memory');renderMemory();toastMsg('حافظه پاک شد')};
+$('#closeGmailPanel').onclick=()=>$('#gmailPanel').classList.remove('open');$('#gmailConnectBtn').onclick=startGmailOAuth;$('#gmailDisconnectBtn').onclick=()=>JARVIS_GMAIL.disconnect();$('#gmailClientIdInput').onkeydown=e=>{if(e.key==='Enter')startGmailOAuth()};updateGmailUI();
+const accountPanel=$('#accountPanel'),accountName=$('#accountName'),accountEmailText=$('#accountEmailText'),accountStatus=$('#accountStatus'),accountLabel=$('#accountLabel');
+function loadAccount(){try{const a=JSON.parse(localStorage.getItem('jarvis-account')||'null');if(a){accountName.value=a.name||'';accountEmailText.textContent=a.email||'وارد نشده';accountStatus.textContent=a.email?'ورود شده':'ذخیره شده';accountLabel.textContent=a.name||'اکانت'}}catch(e){}}
+function saveAccount(){const a={name:accountName.value.trim(),email:accountEmailText.textContent==='وارد نشده'?'':accountEmailText.textContent};localStorage.setItem('jarvis-account',JSON.stringify(a));accountStatus.textContent=a.email?'ورود شده':'ذخیره شده';accountLabel.textContent=a.name||'اکانت';toastMsg('اکانت روی دستگاه ذخیره شد')}
+$('#accountBtn').onclick=()=>{closeSidebar();loadAccount();accountPanel.classList.add('open')};$('#closeAccountPanel').onclick=()=>accountPanel.classList.remove('open');$('#saveAccountBtn').onclick=saveAccount;$('#logoutAccountBtn').onclick=()=>{localStorage.removeItem('jarvis-account');accountName.value='';accountEmailText.textContent='وارد نشده';accountStatus.textContent='مهمان';accountLabel.textContent='اکانت';toastMsg('از اکانت خارج شد')};
+function loginError(message){
+  const el=document.getElementById('v28LoginError');
+  if(el){el.textContent=message;el.classList.add('show')}
+  toastMsg(message);
+}
+function clearLoginError(){const el=document.getElementById('v28LoginError');if(el){el.textContent='';el.classList.remove('show')}}
+function getConfiguredClientId(){return (JARVIS_GMAIL.clientId||JARVIS_PRIVATE_CONFIG.GOOGLE_OAUTH_CLIENT_ID||document.getElementById('v28ClientId')?.value||'').trim()}
+async function loginWithGoogle(after){
+  clearLoginError();
+  const id=getConfiguredClientId();
+  if(!id){loginError('Google باز نمی‌شود چون Google Client ID تنظیم نشده. Client ID را در کادر پایین همین صفحه وارد کن.');document.getElementById('v28ClientId')?.focus();return false}
+  JARVIS_GMAIL.setClientId(id);
+  if(location.protocol==='file:'){loginError('این صفحه با file:// باز شده است. برای Google و Gmail باید JARVIS روی HTTPS یا دامنهٔ معتبر اجرا شود.');return false}
+  try{
+    await waitForGoogleIdentity();
+    const c=google.accounts.oauth2.initTokenClient({client_id:id,scope:'openid email profile',callback:async r=>{
+      if(r.error){loginError('Google: '+(r.error_description||r.error||'ورود ناموفق بود'));return}
+      try{const resp=await fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+r.access_token}});if(!resp.ok)throw Error('userinfo '+resp.status);const u=await resp.json();accountName.value=u.name||'';accountEmailText.textContent=u.email||'وارد شده';accountStatus.textContent='Google وارد شده';saveAccount();localStorage.setItem('JARVIS_GOOGLE_LOGIN','1');after?.();document.getElementById('v28Login')?.classList.add('hide');toastMsg('با Google وارد شدی')}catch(e){console.error(e);loginError('Google وارد شد، اما اطلاعات حساب دریافت نشد.')}} ,error_callback:e=>{console.error(e);loginError('پنجره Google باز نشد: '+(e?.type||e?.message||'مرورگر پنجره ورود را مسدود کرد.'))}});
+    c.requestAccessToken({prompt:'select_account'});
+    return true
+  }catch(e){console.error(e);loginError(e.message==='GIS_TIMEOUT'?'سرویس Google در این صفحه بارگذاری نشد؛ اینترنت را بررسی کن و صفحه را رفرش کن.':'Google Login: '+(e.message||'خطای ناشناخته'));return false}
+}
+async function connectGmailFromLogin(){
+  clearLoginError();
+  const id=getConfiguredClientId();
+  if(!id){loginError('برای اتصال Gmail هم Google Client ID لازم است. آن را در کادر پایین وارد کن و «ذخیره Client ID» را بزن.');document.getElementById('v28ClientId')?.focus();return}
+  JARVIS_GMAIL.setClientId(id);
+  if(location.protocol==='file:'){loginError('Gmail روی file:// کار نمی‌کند. JARVIS را روی HTTPS اجرا کن.');return}
+  try{
+    await waitForGoogleIdentity();
+    const c=google.accounts.oauth2.initTokenClient({client_id:id,scope:JARVIS_GMAIL.scopes,callback:r=>{
+      if(r.error){loginError('Gmail: '+(r.error_description||r.error||'اتصال ناموفق بود'));return}
+      JARVIS_GMAIL.token=r.access_token;localStorage.setItem('JARVIS_GMAIL_CONNECTED','1');updateGmailUI();loginError('Gmail با موفقیت وصل شد.');toastMsg('Gmail وصل شد');
+    },error_callback:e=>loginError('پنجره Gmail باز نشد: '+(e?.type||e?.message||'مرورگر پنجره را مسدود کرد.'))});
+    c.requestAccessToken({prompt:'consent'});
+  }catch(e){console.error(e);loginError(e.message==='GIS_TIMEOUT'?'سرویس Google بارگذاری نشد؛ صفحه را رفرش کن.':'Gmail: '+(e.message||'خطای ناشناخته'))}
+}
+$('#googleLoginBtn').onclick=()=>loginWithGoogle();
+
+loadAccount();
+(function setupV28Login(){
+  const wrap=document.getElementById('v28Login'),g=document.getElementById('v28GoogleLogin'),gmail=document.getElementById('v28GmailLogin'),guest=document.getElementById('v28GuestLogin'),note=document.getElementById('v28LoginNote'),client=document.getElementById('v28ClientId'),saveClient=document.getElementById('v28SaveClient');
+  const savedId=JARVIS_GMAIL.clientId||JARVIS_PRIVATE_CONFIG.GOOGLE_OAUTH_CLIENT_ID||'';
+  if(client)client.value=savedId;
+  const logged=localStorage.getItem('JARVIS_GOOGLE_LOGIN')==='1'||localStorage.getItem('JARVIS_GUEST_LOGIN')==='1'||!!JSON.parse(localStorage.getItem('jarvis-account')||'null')?.email;
+  if(logged)wrap?.classList.add('hide');
+  guest?.addEventListener('click',()=>{clearLoginError();localStorage.setItem('JARVIS_GUEST_LOGIN','1');wrap?.classList.add('hide');toastMsg('حالت مهمان فعال شد')});
+  g?.addEventListener('click',()=>loginWithGoogle(()=>wrap?.classList.add('hide')));
+  gmail?.addEventListener('click',connectGmailFromLogin);
+  saveClient?.addEventListener('click',()=>{const id=(client?.value||'').trim();if(!id){loginError('Client ID خالی است.');return}JARVIS_GMAIL.setClientId(id);clearLoginError();if(note)note.textContent='Client ID ذخیره شد. حالا ورود با Google یا اتصال Gmail را بزن.';toastMsg('Client ID ذخیره شد')});
+  client?.addEventListener('keydown',e=>{if(e.key==='Enter')saveClient?.click()});
+  if(note && !savedId)note.textContent='برای Google و Gmail باید Client ID پروژه Google روی دامنهٔ فعلی مجاز باشد. خطاها همین‌جا نمایش داده می‌شوند.';
+})();
+(function buildSquares(){const root=document.getElementById('v28Squares');if(!root)return;const f=document.createDocumentFragment();for(let i=0;i<32;i++){const x=document.createElement('i');x.style.left=(Math.random()*100).toFixed(2)+'%';x.style.animationDuration=(10+Math.random()*16).toFixed(1)+'s';x.style.animationDelay=(-Math.random()*18).toFixed(1)+'s';f.appendChild(x)}root.appendChild(f)})();
+async function buildAttachmentContext(){
+  if(!selectedFiles.length)return '';
+  const parts=[];
+  for(const f of selectedFiles.slice(0,6)){
+    try{
+      if(/^(text\/|application\/(json|csv|xml))/.test(f.type)||/\.(txt|md|json|csv|xml|html|js|css)$/i.test(f.name)){
+        const txt=await f.text(); parts.push(`--- ${f.name} ---\n${txt.slice(0,12000)}`);
+      }else if(f.type.startsWith('image/')){
+        parts.push(`--- ${f.name} ---\nتصویر پیوست شده است؛ برای تحلیل تصویری باید endpoint بینایی /api/vision فعال باشد.`);
+      }else parts.push(`--- ${f.name} ---\nنوع فایل: ${f.type||'نامشخص'}، حجم: ${Math.round(f.size/1024)}KB`);
+    }catch(e){parts.push(`--- ${f.name} ---\nخواندن فایل ناموفق بود.`)}
+  }
+  return parts.join('\n');
+}
+const plusBtn=$('#plusBtn'),fileInput=$('#fileInput'),attachments=$('#attachments'),selectedFiles=[];
+plusBtn.onclick=()=>fileInput.click();fileInput.onchange=()=>{for(const f of fileInput.files){selectedFiles.push(f);const d=document.createElement('div');d.className='attachment'+(f.type.startsWith('image/')?' image':'');d.innerHTML=(f.type.startsWith('image/')?'<img alt="" src=""><span>'+escapeHtml(f.name)+'</span>':'<span>'+escapeHtml(f.name)+'</span>')+'<button type="button">×</button>';if(f.type.startsWith('image/')){const fr=new FileReader();fr.onload=()=>d.querySelector('img').src=fr.result;fr.readAsDataURL(f);}d.querySelector('button').onclick=()=>{const i=selectedFiles.indexOf(f);if(i>-1)selectedFiles.splice(i,1);d.remove()};attachments.appendChild(d)}fileInput.value='';};
+async function ensureMicPermission(){
+  if(!navigator.mediaDevices?.getUserMedia)return true;
+  try{const st=await navigator.mediaDevices.getUserMedia({audio:true,video:false});st.getTracks().forEach(t=>t.stop());return true}catch(e){toastMsg('اجازه میکروفون را برای JARVIS فعال کن');voiceHint.textContent='اجازه میکروفون لازم است';return false}
+}
+function setupSpeech(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){voiceState.textContent='پشتیبانی نمی‌شود';voiceHint.textContent='Speech Recognition در این مرورگر فعال نیست';toastMsg('برای دستیار صوتی از Safari یا Chrome به‌روز استفاده کن');return null}
+  const r=new SR();r.lang='fa-IR';r.continuous=false;r.interimResults=true;r.maxAlternatives=1;
+  r.onstart=()=>{listening=true;voiceState.textContent='در حال گوش دادن';voiceHint.textContent='صحبت کن...';voiceMainBtn.classList.add('active');voiceRing.classList.add('active');voiceModeBtn.classList.add('active');setState('LISTENING','دارم گوش می‌دم...')};
+  r.onresult=e=>{let finalText='';let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0]?.transcript||'';if(e.results[i].isFinal)finalText+=t;else interim+=t}voiceHint.textContent=interim||finalText||'صحبت کن...';if(finalText.trim()){input.value=finalText.trim();setTimeout(()=>{if(input.value.trim()){const t=input.value.trim();input.value='';sendText(t)}},120)}};
+  r.onerror=e=>{listening=false;voiceMainBtn.classList.remove('active');voiceRing.classList.remove('active');voiceModeBtn.classList.remove('active');voiceState.textContent='خطا';voiceHint.textContent=e.error==='not-allowed'?'اجازه میکروفون داده نشده':'دوباره امتحان کن';if(e.error==='not-allowed')toastMsg('اجازه میکروفون را برای JARVIS فعال کن')};
+  r.onend=()=>{listening=false;voiceMainBtn.classList.remove('active');voiceRing.classList.remove('active');voiceModeBtn.classList.remove('active');if(voiceState.textContent==='در حال گوش دادن'){voiceState.textContent='آماده';voiceHint.textContent='برای شروع دوباره روی دکمه پایین بزن'}};
+  return r;
+}
+const voiceCamera=$('#voiceCamera');const voiceModeBtn=$('#voiceModeBtn');const voicePage=$('#voicePage'),voiceMainBtn=$('#voiceMainBtn'),voiceClose=$('#voiceClose'),voiceRing=$('#voiceRing'),voiceState=$('#voiceState'),voiceHint=$('#voiceHint'),voiceMute=$('#voiceMute');
+function openVoicePage(){voicePage.classList.add('open');voiceState.textContent='آماده';voiceHint.textContent='برای شروع مکالمه صوتی روی دکمه پایین بزن'}
+function closeVoicePage(){stopVoiceAudio();if(listening&&recognition)recognition.stop();voicePage.classList.remove('open');voiceMainBtn.classList.remove('active');voiceRing.classList.remove('active');voiceModeBtn.classList.remove('active')}
+async function toggleVoice(){
+  if(listening){try{recognition?.stop()}catch(e){}return}
+  if(!(await ensureMicPermission()))return;
+  try{recognition?.stop()}catch(e){}
+  recognition=setupSpeech();
+  if(!recognition)return;
+  try{recognition.start()}catch(e){recognition=null;toastMsg('میکروفون آماده نشد؛ دوباره بزن')}
+}
+if(voiceCamera)voiceCamera.onclick=openCamera;voiceModeBtn.onclick=()=>{openVoicePage();setTimeout(()=>toggleVoice(),120)};voiceMainBtn.onclick=toggleVoice;voiceClose.onclick=closeVoicePage;voiceMute.onclick=()=>{voiceMuted=!voiceMuted;voiceMute.classList.toggle('muted',voiceMuted);voiceMute.setAttribute('aria-label',voiceMuted?'فعال کردن صدا':'بی‌صدا کردن');if(voiceMuted)stopVoiceAudio();toastMsg(voiceMuted?'صدای JARVIS قطع شد':'صدای JARVIS فعال شد')};
+$('#micBtn').onclick=()=>toggleVoice();
+async function openImageStudio(){imageStudio.classList.add('open');imageResult.innerHTML='';imagePrompt.focus()}
+async function generateImage(){
+  const prompt=imagePrompt.value.trim();
+  if(!prompt)return toastMsg('اول توضیح تصویر را بنویس');
+  imageResult.innerHTML='<div class=\"image-loading\"><div class=\"upload-spinner\"></div>دارم تصویر را می‌سازم...</div>';
+  try{
+    const r=await fetch(JARVIS_API.url('/image'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'gpt-image-1',prompt,size:imageSize.value,quality:imageQuality.value==='auto'?'auto':imageQuality.value})});
+    if(!r.ok){const tx=await r.text();const e=Error('OpenAI '+r.status);e.detail=tx;throw e}
+    const j=await r.json();const b64=j.data?.[0]?.b64_json;const url=j.data?.[0]?.url;
+    const src=b64?'data:image/png;base64,'+b64:url;
+    if(!src)throw Error('NO_IMAGE');
+    window.__jarvisGeneratedImage=src;
+    imageResult.innerHTML='<img alt=\"تصویر ساخته‌شده توسط JARVIS\" src=\"'+src+'\"><button class=\"generate-image\" style=\"margin-top:8px\" id=\"saveGeneratedImage\">ذخیره تصویر</button>';
+    $('#saveGeneratedImage').onclick=downloadGeneratedImage;
+  }catch(e){console.error(e);imageResult.innerHTML='<div class=\"image-loading\">ساخت تصویر انجام نشد.<br><small>کلید OpenAI، دسترسی مدل یا اتصال اینترنت را بررسی کن.</small></div>'}
+}
+
+function downloadGeneratedImage(){if(!window.__jarvisGeneratedImage)return;const a=document.createElement('a');a.href=window.__jarvisGeneratedImage;a.download='jarvis-image.png';a.click()}
+const imageStudio=$('#imageStudio'),imagePrompt=$('#imagePrompt'),imageSize=$('#imageSize'),imageQuality=$('#imageQuality'),imageResult=$('#imageResult');$('#closeImageStudio').onclick=()=>imageStudio.classList.remove('open');$('#generateImageBtn').onclick=generateImage;
+async function directVision(images, prompt){
+  const key=JARVIS_PRIVATE_CONFIG.GROQ_API_KEY||localStorage.getItem('JARVIS_GROQ_KEY')||'';
+  if(!key) throw new Error('GROQ_KEY_MISSING');
+  const arr=(Array.isArray(images)?images:[images]).filter(Boolean).slice(0,5);
+  const content=[{type:'text',text:prompt||'این تصویر را دقیق و کوتاه به فارسی توضیح بده.'}];
+  for(const src of arr){content.push({type:'image_url',image_url:{url:src}})}
+  const body={model:'qwen/qwen3.6-27b',messages:[{role:'user',content}],temperature:.4,max_completion_tokens:1400,stream:false};
+  const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify(body)});
+  const txt=await r.text(); if(!r.ok){const e=new Error('Groq Vision '+r.status);e.detail=txt;throw e}
+  const j=JSON.parse(txt); return j.choices?.[0]?.message?.content||'';
+}
+let stream=null;
+async function openCamera(){
+  const box=document.createElement('div');box.style='position:fixed;inset:0;background:#000;z-index:400;display:flex;flex-direction:column';
+  box.innerHTML='<video autoplay playsinline style="width:100%;height:100%;object-fit:cover"></video><div class="v28-read-result" id="v28ReadResult"></div><div class="v28-camera-tools"><button id="v28Read">خواندن تصویر</button><button class="secondary" id="v28Snap">ثبت تصویر</button><button class="secondary" id="camClose">بستن</button></div>';
+  document.body.appendChild(box);const v=box.querySelector('video'),result=box.querySelector('#v28ReadResult');
+  try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});v.srcObject=stream}catch(e){box.remove();toastMsg('دسترسی دوربین داده نشد؛ از HTTPS و اجازه Camera استفاده کن');return}
+  async function capture(){const c=document.createElement('canvas');c.width=v.videoWidth||1280;c.height=v.videoHeight||720;c.getContext('2d').drawImage(v,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.82)}
+  box.querySelector('#v28Snap').onclick=async()=>{const src=await capture();result.textContent='تصویر ثبت شد؛ می‌توانی «خواندن تصویر» را بزنی.';result.classList.add('show');window.__JARVIS_LAST_CAMERA_IMAGE=src};
+  box.querySelector('#v28Read').onclick=async()=>{const src=window.__JARVIS_LAST_CAMERA_IMAGE||await capture();result.textContent='در حال خواندن تصویر...';result.classList.add('show');try{result.textContent=await directVision(src,'این تصویر را دقیق و کوتاه به فارسی توضیح بده. متن‌های قابل‌خواندن، اشیاء و نکات مهم را بگو.')}catch(e){try{const j=await JARVIS_API.json('/vision',{image:src,prompt:'این تصویر را دقیق و کوتاه به فارسی توضیح بده. متن‌های قابل‌خواندن، اشیاء و نکات مهم را بگو.'});result.textContent=j.text||j.answer||'پاسخی از سرویس تصویر دریافت نشد.'}catch(e2){result.textContent='خواندن تصویر انجام نشد؛ اتصال Groq یا دسترسی دوربین را بررسی کن.'}}};
+  box.querySelector('#camClose').onclick=()=>{stream?.getTracks().forEach(t=>t.stop());stream=null;box.remove()};
+}
+
+$('#cameraBtn').onclick=openCamera;
+
+const RESPONSE_MODES={friendly:{name:'صمیمی',prompt:'با لحن گرم، خودمانی و طبیعی جواب بده؛ خشک و رسمی نباش.'},expert:{name:'متخصص',prompt:'مثل یک متخصص باتجربه پاسخ بده؛ دقیق، منظم و با اصطلاحات لازم، بدون زیاده‌گویی.'},concise:{name:'کوتاه',prompt:'پاسخ را تا حد ممکن کوتاه و مستقیم نگه دار؛ فقط نکات ضروری را بگو.'},teacher:{name:'معلم',prompt:'مثل یک معلم خوب توضیح بده؛ ساده، مرحله‌به‌مرحله و قابل فهم.'},creative:{name:'خلاق',prompt:'برای ایده‌ها و راه‌حل‌ها خلاق باش و چند پیشنهاد متفاوت اما کاربردی بده.'},direct:{name:'مستقیم',prompt:'خیلی مستقیم و بی‌حاشیه پاسخ بده؛ مقدمه و توضیحات غیرضروری نده.'}};
+let responseMode=localStorage.getItem('JARVIS_RESPONSE_MODE')||'friendly';
+function applyResponseMode(){document.querySelectorAll('.response-mode').forEach(b=>b.classList.toggle('active',b.dataset.mode===responseMode));const el=$('#modeCurrent');if(el)el.textContent='حالت فعلی: '+(RESPONSE_MODES[responseMode]?.name||'صمیمی')}
+document.querySelectorAll('.response-mode').forEach(b=>b.onclick=()=>{responseMode=b.dataset.mode;localStorage.setItem('JARVIS_RESPONSE_MODE',responseMode);applyResponseMode();toastMsg('حالت جواب: '+RESPONSE_MODES[responseMode].name)});
+applyResponseMode();
+
+const smartPanel=$('#smartPanel'),smartEndpoint=$('#smartEndpoint'),smartToken=$('#smartToken'),smartStatus=$('#smartStatus'),smartBadge=$('#smartBadge');
+smartEndpoint.value=localStorage.getItem('JARVIS_SMART_ENDPOINT')||''; smartToken.value=localStorage.getItem('JARVIS_SMART_TOKEN')||'';
+function openSmartPanel(){smartPanel.classList.add('open')}
+function smartCommand(text){const endpoint=localStorage.getItem('JARVIS_SMART_ENDPOINT')||'';const token=localStorage.getItem('JARVIS_SMART_TOKEN')||'';if(!endpoint){openSmartPanel();toastMsg('اول اتصال Smart Partner را تنظیم کن');return false} smartStatus.textContent='در حال ارسال فرمان...'; const body={command:text,source:'JARVIS',timestamp:new Date().toISOString()}; fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json',...(token?{'Authorization':'Bearer '+token}:{})},body:JSON.stringify(body)}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);smartBadge.textContent='ON';smartStatus.textContent='فرمان ارسال شد';toastMsg('فرمان خانه هوشمند ارسال شد')}).catch(()=>{smartStatus.textContent='اتصال ناموفق';smartBadge.textContent='ERR';toastMsg('Smart Partner به API متصل نشد')});return true}
+$('#saveSmart').onclick=()=>{localStorage.setItem('JARVIS_SMART_ENDPOINT',smartEndpoint.value.trim());localStorage.setItem('JARVIS_SMART_TOKEN',smartToken.value.trim());smartCommand('ping')};$('#closeSmartPanel').onclick=()=>smartPanel.classList.remove('open');
+document.querySelectorAll('[data-smart]').forEach(b=>b.onclick=()=>smartCommand('روشن کردن '+b.dataset.smart));
+
+const commandSheet=$('#commandSheet');
+$('#commandBtn').onclick=()=>commandSheet.classList.add('open');
+$('#closeCommand').onclick=()=>commandSheet.classList.remove('open');
+commandSheet.addEventListener('click',e=>{if(e.target===commandSheet)commandSheet.classList.remove('open');});
+document.querySelectorAll('.command-action').forEach(b=>b.onclick=()=>{const c=b.dataset.cmd;commandSheet.classList.remove('open');if(c==='voice'){openVoicePage();setTimeout(()=>toggleVoice(),120);}if(c==='image')openImageStudio();if(c==='camera')openCamera();if(c==='shortcut')runShortcut(localStorage.getItem('JARVIS_DEFAULT_SHORTCUT')||'JARVIS');if(c==='smart')openSmartPanel();if(c==='gmail')gmailConnect();if(c==='new')newChat();});
+/* V10 BUTTON WIRING */
+document.getElementById('menuBtn')?.addEventListener('click',openSidebar);
+ensureChat();
+const active=currentChat();
+history=Array.isArray(active?.messages)?active.messages.slice():[];
+if(history.length){showChat();history.forEach(m=>addBubble(m.content,m.role==='user'?'user':'assistant'))}
+renderChatList();
+function greetUserName(){const n=(localStorage.getItem('JARVIS_USER_NAME')||'').trim();return n?`سلام ${escapeHtml(n)}`:'سلام'}
+function updateGreeting(){const n=(localStorage.getItem('JARVIS_USER_NAME')||'').trim();const el=$('#title');if(el)el.textContent=n?`سلام ${n}`:'سلام'}
+function openNameModal(){const m=$('#nameModal');if(!m)return;m.classList.add('open');setTimeout(()=>$('#nameInput')?.focus(),80)}
+function saveUserName(){const n=String($('#nameInput')?.value||'').trim().replace(/\s+/g,' ');if(!n)return toastMsg('اول اسمت رو بنویس');localStorage.setItem('JARVIS_USER_NAME',n);$('#nameModal')?.classList.remove('open');updateGreeting();setState('READY',`سلام ${n}`);toastMsg(`سلام ${n}`)}
+$('#saveName')?.addEventListener('click',saveUserName);
+$('#nameInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')saveUserName()});
+updateGreeting();
+if(!localStorage.getItem('JARVIS_USER_NAME'))setTimeout(openNameModal,350);
+setInterval(()=>{if(!timerEnd)setState('READY',currentChat()?.title && currentChat().title!=='چت جدید' ? currentChat().title : 'سلام')},1500);setState('READY',currentChat()?.title && currentChat().title!=='چت جدید' ? currentChat().title : (localStorage.getItem('JARVIS_USER_NAME')?`سلام ${localStorage.getItem('JARVIS_USER_NAME')}`:'سلام'));
+document.querySelectorAll(".voice-preset[data-fish-model]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".voice-preset[data-fish-model]").forEach(x=>x.classList.remove("active"));b.classList.add("active");localStorage.setItem("JARVIS_FISH_MODEL",b.dataset.fishModel);toastMsg("مدل صدا: "+b.textContent)}));
+document.querySelectorAll(".voice-preset[data-voice-style]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".voice-preset[data-voice-style]").forEach(x=>x.classList.remove("active"));b.classList.add("active");localStorage.setItem("JARVIS_VOICE_STYLE",b.dataset.voiceStyle);toastMsg("حالت صدا: "+b.textContent)}));
+document.getElementById('deleteNo')?.addEventListener('click',()=>{pendingDeleteId=null;document.getElementById('deleteConfirm')?.classList.remove('open')});document.getElementById('deleteYes')?.addEventListener('click',()=>{if(pendingDeleteId)finishDeleteChat(pendingDeleteId);pendingDeleteId=null;document.getElementById('deleteConfirm')?.classList.remove('open')});document.getElementById('deleteConfirm')?.addEventListener('click',e=>{if(e.target.id==='deleteConfirm'){pendingDeleteId=null;e.currentTarget.classList.remove('open')}});
+(function initV29Background(){
+  const host=document.getElementById('v29BackgroundShapes'); if(!host)return;
+  const defs=[['square',8,12,'-','+'],['diamond',84,18,'+','-'],['dot',16,54,'+','+'],['ring',72,62,'-','+'],['square',55,82,'+','-'],['dot',91,40,'-','-'],['diamond',35,28,'+','-'],['ring',12,82,'+','+'],['dot',62,12,'-','+'],['square',42,58,'+','+']];
+  defs.forEach((d,i)=>{const el=document.createElement('i');el.className='v29-shape '+d[0];el.style.left=d[1]+'%';el.style.top=d[2]+'%';el.style.setProperty('--dx',(d[3]==='+'?1:-1)*(18+i*3)+'px');el.style.setProperty('--dy',(d[4]==='+'?-1:1)*(16+i*2)+'px');el.style.setProperty('--rot',(i%2?'45deg':'25deg'));el.style.setProperty('--dur',(13+i%6)+'s');el.style.animationDelay=(-i*1.7)+'s';host.appendChild(el)});
+})();
+(function hardenSendButton(){
+  const b=document.getElementById('sendBtn'); if(!b)return;
+  b.addEventListener('click',()=>{setTimeout(()=>{if(!activeController && normalizeUserText(input.value)){sendText(input.value).catch(e=>console.error('JARVIS send error:',e))}},0)});
+})();</script>
+
+
+
+
+<script>
+(()=>{
+  const J31={
+    version:'31.0',
+    commands:[
+      {re:/^(سلام|hello|hi|درود)\b/i, r:'سلام داداش 👋 من JARVIS V34 آماده‌ام. بگو چی کار کنیم.'},
+      {re:/(ساعت|time)/i, r:()=>`الان ساعت ${new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'})} است.`},
+      {re:/(تاریخ|امروز|date|today)/i, r:()=>`امروز ${new Date().toLocaleDateString('fa-IR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})} است.`},
+      {re:/(وضعیت|status|آنلاین|online)/i, r:()=>`وضعیت JARVIS: ${navigator.onLine?'آنلاین':'آفلاین'} • باتری: ${window.__j31Battery??'نامشخص'}`}
+    ],
+    route(text){
+      const t=text.trim();
+      for(const c of this.commands) if(c.re.test(t)) return typeof c.r==='function'?c.r():c.r;
+      return null;
+    }
+  };
+  window.JARVIS_V31=J31;
+  if(navigator.getBattery){ navigator.getBattery().then(b=>{const set=()=>window.__j31Battery=Math.round(b.level*100)+'%';set();b.addEventListener('levelchange',set)}).catch(()=>{}); }
+  const style=document.createElement('style');
+  style.textContent=`
+    .j31-toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%) translateY(10px);z-index:99999;padding:10px 15px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(12,16,28,.9);backdrop-filter:blur(16px);color:#fff;font:600 13px system-ui;opacity:0;transition:.25s;pointer-events:none;box-shadow:0 10px 35px #0008}.j31-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+    .j31-thinking{display:inline-flex;gap:5px;align-items:center}.j31-thinking i{width:5px;height:5px;border-radius:50%;background:currentColor;animation:j31b .8s infinite alternate}.j31-thinking i:nth-child(2){animation-delay:.18s}.j31-thinking i:nth-child(3){animation-delay:.36s}@keyframes j31b{to{opacity:.25;transform:translateY(-3px)}}
+  `;
+  document.head.appendChild(style);
+  window.j31Toast=(msg)=>{let e=document.querySelector('.j31-toast');if(!e){e=document.createElement('div');e.className='j31-toast';document.body.appendChild(e)}e.textContent=msg;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800)};
+  window.addEventListener('offline',()=>j31Toast('اتصال اینترنت قطع شد')); window.addEventListener('online',()=>j31Toast('اتصال اینترنت برقرار شد'));
+
+  // Harden existing send flow: instant local command responses, then existing AI flow.
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b) return;
+    b.classList.add('j31-press'); setTimeout(()=>b.classList.remove('j31-press'),140);
+  },true);
+
+  // Voice permission UX: never silently fail.
+  window.JARVIS_V31.requestMic=async()=>{
+    if(!navigator.mediaDevices?.getUserMedia){j31Toast('مرورگر اجازه میکروفون نمی‌دهد');return null}
+    try{return await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}})}
+    catch(err){j31Toast(err?.name==='NotAllowedError'?'دسترسی میکروفون رد شد':'میکروفون در دسترس نیست');return null}
+  };
+
+  // Camera helper for the existing vision UI.
+  window.JARVIS_V31.openCamera=async()=>{
+    if(!navigator.mediaDevices?.getUserMedia){j31Toast('دوربین در این مرورگر در دسترس نیست');return null}
+    try{return await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false})}
+    catch(err){j31Toast(err?.name==='NotAllowedError'?'دسترسی دوربین رد شد':'دوربین در دسترس نیست');return null}
+  };
+
+  // Lightweight local memory for the current device; no API key or secret is stored.
+  const MEMKEY='jarvis_v31_memory';
+  window.JARVIS_V31.memory={
+    get(){try{return JSON.parse(localStorage.getItem(MEMKEY)||'[]')}catch{return[]}},
+    add(role,text){try{const a=this.get();a.push({role,text:String(text).slice(0,1200),t:Date.now()});localStorage.setItem(MEMKEY,JSON.stringify(a.slice(-40)))}catch{}},
+    clear(){try{localStorage.removeItem(MEMKEY)}catch{}}
+  };
+
+  // Make local command router available to any existing input/send implementation.
+  window.JARVIS_V31.tryLocal=async(text)=>{const r=J31.route(text);if(r){j31Toast('پاسخ سریع JARVIS');return r}return null};
+})();
+</script>
+
+
+<script id="v32-engine">
+(()=>{
+const V32={mode:localStorage.getItem('jarvis-v32-mode')||'normal',stream:null,files:[]};
+const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+const toast=t=>{const e=q('#v32Toast');if(!e)return;e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2200)};
+const open=id=>q('#'+id)?.classList.add('open');const close=id=>q('#'+id)?.classList.remove('open');
+function setMode(m){V32.mode=m;localStorage.setItem('jarvis-v32-mode',m);qa('[data-v32-mode]').forEach(b=>b.classList.toggle('active',b.dataset.v32Mode===m));toast('حالت '+({normal:'عادی',thinking:'فکر عمیق',deepsearch:'Deep Search',web:'Google Search',homework:'تکالیف'}[m]||m)+' فعال شد')}
+qa('[data-v32-mode]').forEach(b=>b.onclick=()=>setMode(b.dataset.v32Mode));
+q('#plusBtn')?.addEventListener('click',()=>q('#v32Tools')?.classList.toggle('open'));
+qa('[data-v32-close]').forEach(b=>b.onclick=()=>close(b.dataset.v32Close));
+qa('[data-v32-action]').forEach(b=>b.onclick=()=>{const a=b.dataset.v32Action;q('#v32Tools')?.classList.remove('open');if(a==='upload')q('#fileInput')?.click();if(a==='camera')openCamera();if(a==='github')open('v32Github');if(a==='search')open('v32Search');if(a==='image')document.getElementById('imageStudio')?.classList.add('open');if(a==='voice')document.getElementById('voiceModeBtn')?.click()});
+function openCamera(){open('v32Camera');navigator.mediaDevices?.getUserMedia?.({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false}).then(s=>{V32.stream=s;q('#v32Video').srcObject=s}).catch(e=>{toast('دسترسی دوربین داده نشد');q('#v32VisionResult').textContent='Camera error: '+e.name})}
+function stopCamera(){V32.stream?.getTracks?.().forEach(t=>t.stop());V32.stream=null;q('#v32Video')&&(q('#v32Video').srcObject=null)}
+q('#v32Capture')?.addEventListener('click',()=>{const v=q('#v32Video'),c=q('#v32Canvas');if(!v?.videoWidth)return toast('دوربین هنوز آماده نیست');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);const img=document.createElement('img');img.className='v32-preview';img.src=c.toDataURL('image/jpeg',.88);const r=q('#v32VisionResult');r.innerHTML='';r.appendChild(img);r.dataset.image=img.src;toast('عکس گرفته شد')});
+q('#v32CameraAsk')?.addEventListener('click',async()=>{const data=q('#v32Canvas')?.toDataURL('image/jpeg',.82);if(!data)return toast('اول عکس بگیر');q('#v32VisionResult').insertAdjacentHTML('beforeend','<div>در حال بررسی تصویر…</div>');try{const a=await directVision(data,'این تصویر را کامل بررسی کن؛ متن، اشیا و نکات مهم را توضیح بده.');q('#v32VisionResult').insertAdjacentText('beforeend','\n'+a)}catch(e){try{const r=await fetch('/api/vision',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:data,task:'این تصویر را کامل بررسی کن؛ متن، اشیا و نکات مهم را توضیح بده.'})});if(!r.ok)throw Error(r.status);const j=await r.json();q('#v32VisionResult').insertAdjacentText('beforeend','\n'+(j.answer||j.text||JSON.stringify(j)))}catch(e2){q('#v32VisionResult').insertAdjacentText('beforeend','\nVision در دسترس نیست؛ عکس گرفته شد.')}}});
+q('#v32HomeworkInput')?.addEventListener('change',e=>{V32.files=[...e.target.files].filter(f=>f.type.startsWith('image/'));const p=q('#v32HomeworkPreview');p.innerHTML='';V32.files.forEach(f=>{const im=document.createElement('img');im.className='v32-preview';im.alt=f.name;im.src=URL.createObjectURL(f);p.appendChild(im)})});
+q('#v32SolveHomework')?.addEventListener('click',async()=>{if(!V32.files.length)return toast('عکس صفحه را انتخاب کن');const r=q('#v32HomeworkResult');r.textContent='در حال آماده‌سازی تمام صفحه‌ها…';const imgs=[];for(const f of V32.files)imgs.push(await new Promise(res=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.readAsDataURL(f)}));try{r.textContent=await directVision(imgs,'تمام سؤال‌های این صفحه‌ها را تشخیص بده و همه را به ترتیب حل کن. صورت سؤال را کوتاه بازگو کن و پاسخ و توضیح لازم را بده.')}catch(e){try{const x=await fetch('/api/vision',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({images:imgs,task:'تمام سؤال‌های این صفحه‌ها را تشخیص بده و همه را به ترتیب حل کن. صورت سؤال را کوتاه بازگو کن و پاسخ و توضیح لازم را بده.'})});if(!x.ok)throw Error(x.status);const j=await x.json();r.textContent=j.answer||j.text||JSON.stringify(j)}catch(e2){r.textContent='حل تصویر در دسترس نیست؛ اتصال Groq Vision یا Backend را بررسی کن.'}}});
+q('#v32GoogleSearch')?.addEventListener('click',()=>{const t=q('#v32SearchInput').value.trim();if(!t)return toast('عبارت جستجو را بنویس');window.open('https://www.google.com/search?q='+encodeURIComponent(t),'_blank','noopener');q('#v32SearchResult').textContent='Google Search در تب جدید باز شد.'});
+q('#v32DeepSearch')?.addEventListener('click',()=>{const t=q('#v32SearchInput').value.trim();if(!t)return toast('موضوع را بنویس');q('#v32SearchResult').textContent='Deep Search فعال شد. موضوع برای JARVIS: '+t;try{window.sendText('Deep Search را برای این موضوع انجام بده و منابع معتبر را مقایسه کن: '+t)}catch(e){}});
+qa('[data-gh]').forEach(b=>b.onclick=async()=>{const action=b.dataset.gh,repo=q('#v32GhRepo').value.trim(),path=q('#v32GhPath').value.trim(),out=q('#v32GhResult');if(action==='open'){if(!repo)return toast('owner/repository را وارد کن');window.open('https://github.com/'+repo,'_blank','noopener');return}out.textContent='در حال اجرای '+action+'…';try{const r=await fetch('/api/github',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,repo,path})});if(!r.ok)throw Error(r.status);const j=await r.json();out.textContent=typeof j==='string'?j:JSON.stringify(j,null,2)}catch(e){out.textContent='اتصال Backend GitHub برای این عملیات هنوز روی این HTML فعال نشده. از اتصال امن GitHub/Connector استفاده کن؛ توکن داخل HTML قرار نمی‌گیرد.'}});
+q('#closeCommand')?.addEventListener('click',()=>q('#commandSheet')?.classList.remove('open'));
+// Smart action router: lets the existing chat engine know which mode the user selected.
+const oldSend=window.sendText;
+if(typeof oldSend==='function'){
+ window.sendText=async function(text,opts={}){
+   let t=String(text||'').trim();
+   const low=t.toLowerCase();
+   if(/(گیت.?هاب|github)/i.test(t)&&/(ریپو|repository|issue|pull|فایل|repo)/i.test(t)){open('v32Github');if(q('#v32GhResult'))q('#v32GhResult').textContent='فرمان GitHub تشخیص داده شد؛ از همین پنل اجرا کن.';}
+   if(/(دوربین|camera)/i.test(t)){openCamera();return}
+   if(/(حل.*(تکلیف|سوال)|تکلیف.*حل|homework)/i.test(t)){open('v32Homework');setMode('homework')}
+   if(/(deep search|دیپ سرچ|جستجوی عمیق)/i.test(t))setMode('deepsearch');
+   if(/(فکر عمیق|thinking|reasoning)/i.test(t))setMode('thinking');
+   if(V32.mode==='web' && !/^https?:/i.test(t)){window.open('https://www.google.com/search?q='+encodeURIComponent(t),'_blank','noopener');return}
+   if(V32.mode==='thinking')t='با دقت و مرحله‌بندی منطقی پاسخ بده، اما فقط نتیجه و استدلال لازم را نمایش بده.\n'+t;
+   if(V32.mode==='deepsearch')t='این درخواست را با رویکرد Deep Search بررسی کن؛ منابع معتبر را مقایسه و جمع‌بندی کن.\n'+t;
+   return oldSend.call(this,t,opts);
+ }
+}
+window.addEventListener('beforeunload',stopCamera);
+})();
+</script>
+
+<style id="v33-style">
+.v33-panel{position:fixed;inset:0;background:rgba(4,8,18,.72);backdrop-filter:blur(14px);z-index:9999;display:none;align-items:flex-end;justify-content:center}.v33-panel.open{display:flex}.v33-card{width:min(760px,96vw);max-height:88vh;overflow:auto;background:rgba(12,18,32,.97);border:1px solid rgba(120,160,255,.2);border-radius:24px 24px 0 0;padding:18px;box-shadow:0 -20px 80px rgba(0,0,0,.45);color:#fff}.v33-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.v33-btn,.v33-input{border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.06);color:#fff;padding:12px}.v33-btn{cursor:pointer}.v33-btn:active{transform:scale(.98)}.v33-row{display:flex;gap:8px;align-items:center;margin:8px 0}.v33-row>*{flex:1}.v33-status{font-size:13px;opacity:.82;white-space:pre-wrap}.v33-on{color:#7dffb2}.v33-off{color:#ff9b9b}.v33-device{display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid rgba(255,255,255,.08);border-radius:14px;margin:7px 0}.v33-switch{min-width:74px}.v33-section{margin:16px 0;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)}
+</style>
+<div id="v33Home" class="v33-panel"><div class="v33-card"><div class="v33-row"><h2 style="margin:0">🏠 JARVIS Home</h2><button class="v33-btn" data-v33-close="v33Home">بستن</button></div><div class="v33-status" id="v33HomeStatus">حالت محلی؛ برای کنترل واقعی، Home Assistant/هاب خانه را به endpoint امن وصل کن.</div><div id="v33Devices"></div><div class="v33-section"><div class="v33-grid"><button class="v33-btn" data-scene="sleep">🌙 Sleep</button><button class="v33-btn" data-scene="home">🏠 I'm Home</button><button class="v33-btn" data-scene="movie">🎬 Movie</button><button class="v33-btn" data-scene="study">📚 Study</button><button class="v33-btn" data-scene="leaving">🚪 Leaving</button><button class="v33-btn" id="v33RefreshHome">🔄 Refresh</button></div></div></div></div>
+<div id="v33ToolsPanel" class="v33-panel"><div class="v33-card"><div class="v33-row"><h2 style="margin:0">⚡ JARVIS Actions</h2><button class="v33-btn" data-v33-close="v33ToolsPanel">بستن</button></div><div class="v33-grid"><button class="v33-btn" id="v33AIStatus">🧠 تست اتصال AI</button><button class="v33-btn" id="v33HomeOpen">🏠 Smart Home</button><button class="v33-btn" id="v33YouTubeSearch">▶️ YouTube Search</button><button class="v33-btn" id="v33GoogleSearch">🔎 Google Search</button><button class="v33-btn" id="v33Shortcuts">⚡ Shortcuts</button><button class="v33-btn" id="v33Automations">🤖 Automations</button></div><div class="v33-section"><div class="v33-row"><input id="v33WebQuery" class="v33-input" placeholder="مثلاً یک ویدیوی فان پیدا کن"><button class="v33-btn" id="v33RunSearch">جستجو</button></div><div id="v33WebResult" class="v33-status"></div></div><div class="v33-section"><b>🔗 اتصال‌ها</b><div id="v33ConnStatus" class="v33-status">در حال بررسی…</div></div></div></div>
+<div id="v33ShortcutsPanel" class="v33-panel"><div class="v33-card"><div class="v33-row"><h2 style="margin:0">⚡ Shortcuts</h2><button class="v33-btn" data-v33-close="v33ShortcutsPanel">بستن</button></div><div class="v33-status">نام Shortcut را وارد کن؛ iOS اجازه می‌دهد URL اجرای Shortcut را باز کنیم. اجرای خودکار بسته به تنظیمات iOS است.</div><div class="v33-row"><input id="v33ShortcutName" class="v33-input" placeholder="نام Shortcut"><button class="v33-btn" id="v33RunShortcut">اجرا</button></div><div class="v33-grid"><button class="v33-btn" data-app="shortcuts">Shortcuts</button><button class="v33-btn" data-app="youtube">YouTube</button><button class="v33-btn" data-app="gmail">Gmail</button><button class="v33-btn" data-app="github">GitHub</button></div></div></div>
+<script id="v33-engine">(()=>{
+const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+const toast=t=>window.j31Toast?j31Toast(t):window.v32Toast?window.v32Toast(t):alert(t);
+const open=id=>q('#'+id)?.classList.add('open');
+const close=id=>q('#'+id)?.classList.remove('open');
+
+qa('[data-v33-close]').forEach(b=>b.onclick=()=>close(b.dataset.v33Close));
+
+let devices;
+try{devices=JSON.parse(localStorage.getItem('jarvis_v33_devices')||'null')}catch(e){devices=null}
+devices=devices||[
+ {id:'bedroom',name:'چراغ اتاق خواب',on:false,brightness:80},
+ {id:'living',name:'چراغ پذیرایی',on:false,brightness:70},
+ {id:'kitchen',name:'چراغ آشپزخانه',on:false,brightness:90},
+ {id:'study',name:'چراغ اتاق مطالعه',on:false,brightness:100}
+];
+
+function save(){localStorage.setItem('jarvis_v33_devices',JSON.stringify(devices))}
+
+function renderHome(){
+  const box=q('#v33Devices'); if(!box)return;
+  box.innerHTML=devices.map(d=>`
+    <div class="v33-device">
+      <div><b>${d.name}</b><div class="v33-status">${d.on?'روشن':'خاموش'} • ${d.brightness}%</div></div>
+      <button class="v33-btn v33-switch" data-light="${d.id}">${d.on?'خاموش':'روشن'}</button>
+    </div>`).join('');
+  qa('[data-light]').forEach(b=>b.onclick=()=>{
+    const d=devices.find(x=>x.id===b.dataset.light); if(!d)return;
+    d.on=!d.on; save(); renderHome(); sendHomeAction('light',d);
+  });
+}
+
+async function sendHomeAction(type,payload){
+  try{
+    const r=await fetch('/api/home',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({type,payload})
+    });
+    if(!r.ok)throw Error(r.status);
+    toast('فرمان خانه اجرا شد');
+  }catch(e){
+    toast('حالت محلی فعال است؛ برای کنترل واقعی /api/home را به Home Assistant وصل کن');
+  }
+}
+
+q('#v33HomeOpen')?.addEventListener('click',()=>{open('v33Home');renderHome()});
+q('#v33RefreshHome')?.addEventListener('click',()=>{renderHome();toast('وضعیت خانه تازه شد')});
+
+qa('[data-scene]').forEach(b=>b.onclick=()=>{
+  const scene=b.dataset.scene;
+  devices.forEach(d=>{
+    if(scene==='sleep'||scene==='leaving')d.on=false;
+    else if(scene==='home')d.on=true;
+    else if(scene==='movie'){d.on=d.id==='living';if(d.on)d.brightness=30}
+    else if(scene==='study'){d.on=d.id==='study';if(d.on)d.brightness=100}
+  });
+  save();renderHome();sendHomeAction('scene',{scene,devices});toast('Scene اجرا شد');
+});
+
+q('#v33AIStatus')?.addEventListener('click',async()=>{
+  const el=q('#v33ConnStatus'); if(!el)return;
+  el.textContent='در حال بررسی اتصال…';
+  if(location.protocol==='file:'){
+    el.innerHTML='<span class="v33-off">● AI Offline</span><br>این فایل با file:// باز شده و Backend ندارد. اگر Groq Key در تنظیمات ذخیره کنی، JARVIS می‌تواند از مسیر مستقیم Groq هم تلاش کند.';
+    toast('فایل مستقیم است؛ Backend داخلی ندارد');
+    return;
+  }
+  try{
+    const h=await JARVIS_API.health();
+    if(!h.ok)throw Error(h.reason||'BACKEND_UNREACHABLE');
+    const r=await fetch(JARVIS_API.url('/chat'),{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      cache:'no-store',
+      body:JSON.stringify({
+        messages:[{role:'user',content:'Reply with exactly: JARVIS AI ONLINE'}],
+        max_tokens:20,
+        temperature:0
+      })
+    });
+    const txt=await r.text();
+    if(!r.ok)throw Error('HTTP '+r.status+' '+txt.slice(0,240));
+    el.innerHTML='<span class="v33-on">● AI Online</span><br>'+txt.slice(0,300);
+    toast('اتصال AI برقرار است');
+  }catch(e){
+    el.innerHTML='<span class="v33-off">● AI Offline</span><br>'+String(e?.message||e)+'<br><br>Backend: '+JARVIS_API.url('/chat');
+    toast('Backend هوش مصنوعی در دسترس نیست');
+  }
+});
+
+function search(kind){
+  const t=q('#v33WebQuery')?.value.trim();
+  if(!t)return toast('عبارت جستجو را بنویس');
+  const url=kind==='yt'
+    ? 'https://www.youtube.com/results?search_query='+encodeURIComponent(t)
+    : 'https://www.google.com/search?q='+encodeURIComponent(t);
+  window.open(url,'_blank','noopener');
+  const result=q('#v33WebResult');
+  if(result)result.textContent=(kind==='yt'?'YouTube':'Google')+' Search باز شد: '+t;
+}
+q('#v33RunSearch')?.addEventListener('click',()=>search('google'));
+q('#v33GoogleSearch')?.addEventListener('click',()=>search('google'));
+q('#v33YouTubeSearch')?.addEventListener('click',()=>search('yt'));
+
+q('#v33Automations')?.addEventListener('click',()=>toast('Automation فعلاً در حالت محلی است؛ برای اجرای واقعی باید Backend خانه هوشمند متصل باشد'));
+qa('[data-v33-close]').forEach(b=>b.onclick=()=>close(b.dataset.v33Close));
+
+const old=window.sendText;
+if(typeof old==='function'){
+  window.sendText=async function(text,opts={}){
+    const t=String(text||'').trim();
+    const low=t.toLowerCase();
+
+    if(/(همه).*(چراغ|لامپ).*(روشن|خاموش)/i.test(t)){
+      const on=/(روشن)/i.test(t);
+      devices.forEach(d=>d.on=on);
+      save();renderHome();sendHomeAction('all_lights',{on});
+      toast('همه چراغ‌ها '+(on?'روشن':'خاموش')+' شدند');
+      return;
+    }
+
+    if(/(چراغ|لامپ).*(روشن|خاموش)|(turn|switch).*(light|lamp)/i.test(t)){
+      open('v33Home');renderHome();
+      const wantOn=/(روشن|on|turn on)/i.test(t);
+      const d=devices.find(x=>low.includes(x.id)||low.includes(x.name.replace('چراغ ','').toLowerCase()));
+      if(d){
+        d.on=wantOn;save();renderHome();sendHomeAction('light',d);
+        toast(d.name+' '+(wantOn?'روشن':'خاموش')+' شد');
+        return;
+      }
+    }
+
+    if(/(ویدیو|ویدیوی).*(فان|جالب)|youtube.*search/i.test(t)){
+      const cleaned=t.replace(/(یه|یک|ویدیو|ویدیوی|فان|جالب|پیدا کن|پیدا)/gi,' ').trim()||'funny video';
+      const field=q('#v33WebQuery');if(field)field.value=cleaned;
+      search('yt');return;
+    }
+
+    if(/(smart home|خانه هوشمند|خانه)/i.test(t)&&/(باز|کنترل|چراغ|روشن|خاموش)/i.test(t)){
+      open('v33Home');renderHome();return;
+    }
+
+    return old.call(this,t,opts);
+  };
+}
+renderHome();
+})();</script>
+</body></html>
